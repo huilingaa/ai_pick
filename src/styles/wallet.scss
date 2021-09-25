@@ -1,0 +1,216 @@
+/*节点模块中使用的  start*/
+input:-internal-autofill-selected {
+  background-color: transparent !important;
+  color: inherit !important;
+}
+.fixed-button {
+  position: fixed;
+  bottom: 68rpx;
+  left: 0;
+  width: 100%;
+  height: 92rpx;
+  padding: 0 30rpx;
+}
+.fixed-button-row {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120rpx;
+  padding: 10rpx;
+  display: flex;
+}
+.absolute-button {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120rpx;
+  padding: 10rpx;
+}
+.absolute-button-row {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120rpx;
+  padding: 10rpx;
+  display: flex;
+}
+
+.wrap {
+  /*
+  通用包裹容器。
+  */
+  padding: 1rpx 30rpx 0;
+  /*
+  padding-top 1rpx
+  margin-top -1rpx;是为了防止布局的问题。
+  */
+  margin-top: -1rpx;
+}
+.mnemonic-list,
+.mnemonic-select-list {
+  margin-top: 60rpx;
+  height: 500rpx;
+  overflow: hidden;
+}
+.mnemonic-list view,
+.mnemonic-list uni-button {
+  /*
+  助记词默认列表
+  */
+  width: 211rpx;
+  height: 76rpx;
+  background: #1e2332;
+  border-radius: 8rpx;
+  display: inline-block;
+  vertical-align: top;
+  line-height: 76rpx;
+  text-align: center;
+  margin-bottom: 28rpx;
+  margin-right: 28rpx;
+  border: none;
+  font-size: 28rpx;
+  font-weight: 500;
+  text-align: center;
+  color: #e1e6ea;
+  &:after {
+    border: none;
+  }
+  &:nth-child(3n) {
+    margin-right: 0;
+  }
+}
+.mnemonic-select-list view,
+.mnemonic-select-list uni-button {
+  /*
+  助记词选择列表
+  */
+  width: 211rpx !important;
+  height: 76rpx !important;
+  line-height: 76rpx !important;
+  border-radius: 8rpx;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  margin-bottom: 28rpx;
+  margin-right: 28rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #e1e6ea;
+  &:after {
+    border: none;
+  }
+}
+.wallet-input {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #fff;
+  padding: 20rpx;
+}
+
+.wallet-list-item {
+  width: 690rpx;
+  height: 116rpx;
+  background: #1e2332;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+  text-align: left;
+  color: #e1e6ea;
+  line-height: 40rpx;
+  display: flex;
+  align-items: center;
+  padding: 30rpx;
+  justify-content: space-between;
+}
+
+.wallet-form {
+  padding: 40rpx 0;
+  display: block;
+}
+.wallet-form .uni-forms-item {
+  margin-bottom: 30rpx;
+  height: 112rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  &.notBorder {
+    &:hover {
+      &:after {
+        background-image: none;
+      }
+    }
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2rpx;
+    background-image: linear-gradient(#262c40);
+  }
+  &:hover {
+    &:after {
+      background-image: linear-gradient(270deg, #a6bcfb 0%, #989efd 19%, #53b1fe 47%, #188fda 83%, #009aff 100%);
+    }
+  }
+  &.uni-forms-item-error {
+    border-bottom-color: red;
+  }
+}
+
+.wallet-form .uni-easyinput {
+  //height: 112rpx;
+}
+
+.wallet-form .uni-forms-item .title {
+  margin-bottom: 30rpx;
+  font-size: 30rpx;
+}
+/*节点模块里面使用的 end*/
+.wallet-row {
+  display: flex;
+}
+.wallet-justify-center {
+  justify-content: center;
+}
+.wallet-justify-around {
+  justify-content: space-around;
+}
+.wallet-justify-between {
+  justify-content: space-between;
+}
+.wallet-align-center {
+  align-items: center;
+}
+.wallet-align-start {
+  align-items: flex-start;
+}
+.wallet-column {
+  display: flex;
+  flex-direction: column;
+}
+.wallet-logo {
+  width: 160rpx;
+  height: 160rpx;
+}
+.wallet-text {
+  margin-top: 28rpx;
+  height: 56rpx;
+  opacity: 1;
+  font-size: 40rpx;
+  text-align: left;
+  color: #e1e6ea;
+  line-height: 56rpx;
+  display: block;
+}
+.wallet-form-item-walletName {
+}
+.wallet-form-item-password {
+}
