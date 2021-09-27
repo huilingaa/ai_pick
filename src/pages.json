@@ -16,6 +16,12 @@
     },
     {
       "path": "pages/exchange/index"
+    },
+    {
+      "path": "pages/perpetuals/index",
+      "style": {
+        "navigationStyle": "default"
+      }
     }
   ],
   "globalStyle": {
@@ -51,7 +57,7 @@
       },
       {
         "text": "通信",
-        "pagePath": "pages/communication/index",
+        "pagePath": "pages/perpetuals/index",
         "iconPath": "static/images/tabbar/icon_tabbar_signaln@3x.png",
         "selectedIconPath": "static/images/tabbar/icon_tabbar_signal@3x.png"
       },
