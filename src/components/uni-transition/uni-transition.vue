@@ -198,7 +198,7 @@
 					let modestr = ''
 					mode.forEach((item) => {
 						modestr += (item + '-' + type + ',')
-					})
+					})  
 					return modestr.substr(0, modestr.length - 1)
 				} else {
 					return mode + '-' + type

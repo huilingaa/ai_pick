@@ -1,27 +1,19 @@
 {
-  "pages": [{
-      "path": "pages/index/index",
-      "style": {
-        "enablePullDownRefresh": false
-      }
+  "pages": [
+    {
+      "path": "pages/Bluechip/index"
     },
     {
-      "path": "pages/mine/index"
+      "path": "pages/Perpetuals/index"
     },
     {
-      "path": "pages/communication/index"
+      "path": "pages/Invest/index"
     },
     {
-      "path": "pages/asset/index"
+      "path": "pages/Lending/index"
     },
     {
-      "path": "pages/exchange/index"
-    },
-    {
-      "path": "pages/perpetuals/index",
-      "style": {
-        "navigationStyle": "default"
-      }
+      "path": "pages/About/index"
     }
   ],
   "globalStyle": {
@@ -50,35 +42,36 @@
     "iconWidth": "22px",
     "spacing": "1px",
     "list": [{
-        "text": "首页",
-        "pagePath": "pages/index/index",
+        "text": "Bluechip",
+        "pagePath": "pages/Bluechip/index",
         "iconPath": "static/images/tabbar/icon_tabbar_home2@3x.png",
         "selectedIconPath": "static/images/tabbar/icon_tabbar_home1@3x.png"
       },
       {
-        "text": "通信",
-        "pagePath": "pages/perpetuals/index",
+        "text": "Perpetuals",
+        "pagePath": "pages/Perpetuals/index",
         "iconPath": "static/images/tabbar/icon_tabbar_signaln@3x.png",
         "selectedIconPath": "static/images/tabbar/icon_tabbar_signal@3x.png"
       },
       {
-        "text": "炼铸",
-        "pagePath": "pages/exchange/index",
+        "text": "Invest",
+        "pagePath": "pages/Invest/index",
         "iconPath": "./static/images/tabbar/icon_tabbar_exchange2@3x.png",
         "selectedIconPath": "./static/images/tabbar/icon_tabbar_exchange1@3x.png"
       },
       {
-        "text": "资产",
-        "pagePath": "pages/asset/index",
+        "text": "Lending",
+        "pagePath": "pages/Lending/index",
         "iconPath": "static/images/tabbar/icon_tabbar_assets2@3x.png",
         "selectedIconPath": "static/images/tabbar/icon_tabbar_assets1@3x.png"
       },
       {
-        "text": "我的",
-        "pagePath": "pages/mine/index",
+        "text": "About",
+        "pagePath": "pages/About/index",
         "iconPath": "./static/images/tabbar/icon_tabbar_set2@3x.png",
         "selectedIconPath": "./static/images/tabbar/icon_tabbar_set1@3x.png"
       }
     ]
   }
 }
+

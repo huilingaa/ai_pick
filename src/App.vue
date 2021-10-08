@@ -40,7 +40,6 @@
       }, 1200)
       // #endif
 
-      this.setTabbarLang()
 
       uni.preloadPage({
         url: '/pages/communication/index'
@@ -62,34 +61,27 @@
           this.$store.dispatch('saveNetworkType', res.networkType)
         }
       });
-
-
-
-
-
-      // console.log('App Show')
-      this.$store.dispatch('assetStore/getAssets')
-      //    this.$store.dispatch('assetStore/getAssets')
     },
-    onHide: function() {
-      // console.log('App Hide')
-    },
+  
     methods: {
-      setTabbarLang() {
-        ['home', 'communication', 'refining', 'assets', 'mine'].forEach((item, index) => {
-          uni.setTabBarItem({
-            index: index,
-            "text": this.$t(item)
-          })
-        })
-      }
+			// tarbar国际化处理扩展
+      // setTabbarLang() {
+      //   ['home', 'communication', 'refining', 'assets', 'mine'].forEach((item, index) => {
+      //     uni.setTabBarItem({
+      //       index: index,
+      //       "text": this.$t(item)
+      //     })
+      //   })
+      // }
     }
   }
 </script>
 
-<style>
+<style lang="scss">
   /*每个页面公共css */
+  
   @import url("./styles/reset.scss");
+
 
   uni-page-head .uni-page-head__title {
     font-weight: 500;

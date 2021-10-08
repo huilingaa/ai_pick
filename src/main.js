@@ -15,9 +15,12 @@ BigNumber.config({
 // 注册全局组件
 import MescrollBody from "@/components/mescroll-uni/mescroll-body.vue"
 import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue"
+	import myheader from '@/components/my-header/index.vue'
+
 Vue.component('mescroll-body', MescrollBody)
 Vue.component('mescroll-uni', MescrollUni)
 
+Vue.component('my-header', myheader)
 
 Vue.use(VueI18n)
 
@@ -135,10 +138,19 @@ App.mpType = 'app'
 //   }
 // });
 
+
+
 const app = new Vue({
   store,
   ...App
 })
 app.$mount()
+
+
+
+
+
+
+
 
 export default app

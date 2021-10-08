@@ -48,13 +48,13 @@ export default (handleRequest) => {
       state,
       commit
     }) {
-      return handleRequest.get('/api/tools/i18n/v1/public/getI18nByLang').then((res = {}) => {
-        res.data = res.data || {}
-        commit('set_LangData', res.data)
-        return res.data
-      }).catch(error => {
-        commit('set_LangData', {})
-      })
+      // return handleRequest.get('/api/tools/i18n/v1/public/getI18nByLang').then((res = {}) => {
+      //   res.data = res.data || {}
+      //   commit('set_LangData', res.data)
+      //   return res.data
+      // }).catch(error => {
+      //   commit('set_LangData', {})
+      // })
     },
 
     // 保存网络状态

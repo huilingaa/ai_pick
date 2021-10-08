@@ -15,15 +15,14 @@
           </view>
           <slot name="left" />
         </view>
+          <!-- 标题插槽 -->
 
-        <view class="uni-navbar__header-container uni-navbar__content_view">
+       <view class="uni-navbar__header-container uni-navbar__content_view">
           <view class="uni-navbar__header-container-inner uni-navbar__content_view" v-if="title.length">
             <text class="uni-nav-bar-text" :style="{color}">{{ title }}</text>
           </view>
-          <!-- 标题插槽 -->
           <slot />
         </view>
-
         <view :class="title.length ? 'uni-navbar__header-btns-right' : ''" @tap="onClickRight" class="uni-navbar__header-btns uni-navbar__content_view">
           <view class="uni-navbar__content_view" v-if="rightIcon.length && !$slots.right">
             <uni-icons :color="color" :type="rightIcon" size="22" />
@@ -110,7 +109,8 @@
       }
     },
     created(){
-      const res = uni.getSystemInfoSync()
+			// alert('wafenjk')
+     const res = uni.getSystemInfoSync()
       const system = res.platform
       this.statusBarHeight = res.statusBarHeight
       if (system === 'android') {
@@ -206,7 +206,7 @@
     display: flex;
     /* #endif */
     flex-wrap: nowrap;
-    width: 120rpx;
+    // width: 120rpx;
     padding: 0 30rpx;
     justify-content: center;
     align-items: center;
