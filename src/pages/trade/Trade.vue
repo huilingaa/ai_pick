@@ -44,7 +44,7 @@
                     </view>
                 </view>
                 <view class="wrapInput">
-                    <image class="selectImg" src="../../static//images/trade/ic_drop.png" />
+                    <image class="selectImg" src="../../static/images/trade/ic_drop.png" />
                     <picker class="picker" :value='index_list' :range='list' range-key='name'
                         id='limitOrMarket' @change='pickerChange'>
                         <view class="option">{{list[index_list].name}}</view>
