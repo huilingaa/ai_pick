@@ -15,7 +15,7 @@ const chunks = modulesContext.keys().reduce((modules, key) => {
 const moduleNames = Object.keys(chunks)
 
 const initMudules = (handleRequest, API) => moduleNames.reduce((modules, moduleName) => {
-  // modules[moduleName] = chunks[moduleName](handleRequest, API)
+  modules[moduleName] = chunks[moduleName](handleRequest, API)
   return modules
 }, {})
 

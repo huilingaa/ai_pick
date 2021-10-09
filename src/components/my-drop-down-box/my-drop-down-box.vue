@@ -5,7 +5,8 @@
 
 			<view class="dropDown_row">
 				<view class="left">
-					<!--    <view class="dropDown_close" @click="close" v-if="leftIcon=='close' && !$props.left"></view>
+
+	<!-- 				   <view class="dropDown_close" @click="close" v-if="leftIcon=='close' && !$props.left"></view>
           <view class="dropDown_back" @click="close" v-else-if="leftIcon=='back' && !$props.left"></view>
           <view class="text" v-else-if="!!leftText && !$props.left"><text>{{ leftText }}}</text></view> -->
 					<slot name="left"></slot>
@@ -56,6 +57,10 @@
 				type: String,
 				default: '360px'
 			},
+      width:{
+        type: String,
+        default: '670rpx'
+      },
 			theme: {
 				type: String,
 				default: 'noBuySell'
@@ -64,7 +69,8 @@
 		computed: {
 			wrapStyle() {
 				return {
-					height: this.height
+					height: this.height,
+          	width: this.width
 				}
 			}
 		},
@@ -93,7 +99,7 @@
 	@import "../../styles/mixin";
 
 	.dropDown {
-		width: 670rpx;
+		// width: 670rpx;
 		background: #ffffff;
 		border-radius: 10rpx;
 		padding: 72rpx 70rpx 0 70rpx;

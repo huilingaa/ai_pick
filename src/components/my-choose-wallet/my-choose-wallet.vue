@@ -5,7 +5,7 @@
       <view class="walletBox">
         <view>
           <view class="walletBox_item" v-for="(item,index) in walletLists" :key="index"
-            @click="handleSwitchWallet(item.id)">
+            @click="handleConnectWallet(item.name)">
             <view class="walletBox_item-icon">
               <image :src="require(`../../static/images/wallet/ic_${item.img}@2x (1).png`)" />
             </view>
@@ -17,7 +17,6 @@
         </view>
       </view>
     </my-drop-down-box>
-
   </view>
 </template>
 
@@ -31,16 +30,12 @@
     deepcClone,
     isEmpty
   } from '../../utils/index.js'
-
+  import {
+    getWeb3
+  } from '../../utils/getWeb3.js'
   export default {
     data() {
       return {
-        inviteCheckTimer: null,
-        isFocus: false,
-        inviteCode: '',
-        currentWallet: {
-          id: 1,
-        },
         walletLists: [{
             id: '',
             img: 'metaMask',
@@ -62,85 +57,30 @@
         ],
       };
     },
-    computed: {
-      ...mapState('walletStore', {
-        walletList: (state) => {
-          // 将激活的节点移动到第一位
-          const currentWalletId = state.currentWallet
-          const list = deepcClone(state.walletList)
-          let currentWallet = {}
 
-
-          // 只有一个节点时，这个节点就是默认节点
-          // if (list.length > 1) {
-          //   for (let i = 0; i < list.length; i++) {
-          //     if (String(list[i].id) === String(currentWalletId)) {
-          //       currentWallet = list[i]
-          //       list.splice(i, 1)
-          //       break;
-          //     }
-          //   }
-          //   if (!isEmpty(currentWallet)) {
-          //     list.unshift(currentWallet)
-          //   }
-          // }
-          return list
-
-
-
-
-        }
-      }),
-      // ...mapGetters('walletStore', {
-      //   currentWallet: 'currentWallet'
-      // })
-    },
     methods: {
-      ...mapActions('walletStore', ['changeCurrentWallet']),
-      showInvitePopup(currentWallet) {
-        console.log(currentWallet, 'currentWallet')
-        if (!currentWallet.inviteCode) {
-          this.$nextTick(() => {
-            this.$refs.indexInviteVerify.open();
-          })
-        }
-      },
       // 打开弹窗
       open() {
-        console.log('打开弹窗1');
         this.$refs.cmpwalletpopup.open()
       },
-
-
-      /**
-       * 选择节点
-       * @param {Number} id 节点id
-       */
-      async handleSwitchWallet(id) {
-        if (String(id) === String(this.currentWallet.id)) {
-          return;
-        }
-        const currentWalletId = this.currentWallet.id
-
-        await this.changeCurrentWallet(id);
-        this.showInvitePopup(this.currentWallet);
-        // console.log('触发切换节点');
-        // this.$emit("switchWallet");
-        // // this.$store.dispatch('assetStore/getAssets')
-        this.$refs.cmpwalletpopup.close();
-
-        if (id !== currentWalletId) {
-          uni.showToast({
-            icon: 'none',
-            title: this.$t('switchSuccessfully' || '切换成功'),
+      // 连接钱包
+      handleConnectWallet(name) {
+        this.$store
+          .dispatch('walletStore/connectWallet', name)
+          .then((res) => {
+            this.connectAddressId = res;
+            console.log(name)
+            uni.showToast({
+              icon: 'none',
+              title: '连接成功',
+              duration: 2000,
+              success: () => {
+                this.$refs.cmpwalletpopup.close();
+              }
+            })
           })
-        }
-      },
-
-
-
+      }
     },
-
   }
 </script>
 

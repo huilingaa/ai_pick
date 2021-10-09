@@ -1,34 +1,38 @@
 <template>
   <!-- 自定义导航栏 -->
-  <view class="uni-navbar" :style="{height: `${titleHeight}px`}">
-    <view :class="{ 'uni-navbar--fixed': fixed, 'uni-navbar--shadow': shadow, 'uni-navbar--border': border }" :style="{ backgroundColor, height: `${titleHeight}px` }"
-      class="uni-navbar__content">
+  <view class="uni-navbar" :style="{height: `${titleHeight}px`}" >
+    <view :class="{ 'uni-navbar--fixed': fixed, 'uni-navbar--shadow': shadow, 'uni-navbar--border': border }"
+      :style="{ backgroundColor, height: `${titleHeight}px` }" class="uni-navbar__content">
       <uni-status-bar v-if="statusBar" />
-      <view :style="{ color,backgroundColor,height: `${navBarHeight}px` }" class="uni-navbar__header uni-navbar__content_view">
-        <view @tap="handleClickLeft" class="uni-navbar__header-btns uni-navbar__header-btns-left uni-navbar__content_view">
+      <view :style="{ color,backgroundColor,height: `${navBarHeight}px` }"
+        class="uni-navbar__header uni-navbar__content_view">
+        <view @tap="handleClickLeft"
+          class="uni-navbar__header-btns uni-navbar__header-btns-left uni-navbar__content_view">
           <view class="uni-navbar__content_view" v-if="leftIcon.length && !$slots.left">
             <uni-icons :color="color" :type="leftIcon" size="24" />
           </view>
-          <view :class="{ 'uni-navbar-btn-icon-left': !leftIcon.length }" class="uni-navbar-btn-text uni-navbar__content_view"
-            v-if="leftText.length && !$slots.left">
+          <view :class="{ 'uni-navbar-btn-icon-left': !leftIcon.length }"
+            class="uni-navbar-btn-text uni-navbar__content_view" v-if="leftText.length && !$slots.left">
             <text :style="{ color, fontSize: '14rpx' }">{{ leftText }}</text>
           </view>
           <slot name="left" />
         </view>
-          <!-- 标题插槽 -->
+        <!-- 标题插槽 -->
 
-       <view class="uni-navbar__header-container uni-navbar__content_view">
+        <view class="uni-navbar__header-container uni-navbar__content_view">
           <view class="uni-navbar__header-container-inner uni-navbar__content_view" v-if="title.length">
             <text class="uni-nav-bar-text" :style="{color}">{{ title }}</text>
           </view>
           <slot />
         </view>
-        <view :class="title.length ? 'uni-navbar__header-btns-right' : ''" @tap="onClickRight" class="uni-navbar__header-btns uni-navbar__content_view">
+        <view :class="title.length ? 'uni-navbar__header-btns-right' : ''" @tap="onClickRight"
+          class="uni-navbar__header-btns uni-navbar__content_view">
           <view class="uni-navbar__content_view" v-if="rightIcon.length && !$slots.right">
             <uni-icons :color="color" :type="rightIcon" size="22" />
           </view>
           <!-- 优先显示图标 -->
-          <view class="uni-navbar-btn-text uni-navbar__content_view" v-if="rightText.length && !rightIcon.length && !$slots.right">
+          <view class="uni-navbar-btn-text uni-navbar__content_view"
+            v-if="rightText.length && !rightIcon.length && !$slots.right">
             <text class="uni-nav-bar-right-text">{{ rightText }}</text>
           </view>
           <slot name="right" />
@@ -101,16 +105,15 @@
         default: true
       }
     },
-    data(){
+    data() {
       return {
         titleHeight: 0,
         statusBarHeight: 0,
         navBarHeight: 0
       }
     },
-    created(){
-			// alert('wafenjk')
-     const res = uni.getSystemInfoSync()
+    created() {
+      const res = uni.getSystemInfoSync()
       const system = res.platform
       this.statusBarHeight = res.statusBarHeight
       if (system === 'android') {
@@ -122,7 +125,7 @@
     },
     mounted() {
       if (uni.report && this.title !== '') {
-        uni.report('title', this.title)
+        uni.report('title', this.title) //数据统计，用来上报数据
       }
     },
     methods: {
