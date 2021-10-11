@@ -8,8 +8,8 @@
             </view>
             <span class="box1__money">$81155.3</span>
         </view>
-        <view class="bz" v-show="show_ethOrBtc" @click="show_ethOrBtc=false">
-            <view class="bz__wrap">
+        <view class="bz" :class="{'bz--show':show_ethOrBtc}" @click="show_ethOrBtc=false">
+            <view class="bz__wrap" :class="{'bz__wrap--show':show_ethOrBtc}">
                 <view class="bz__item">
                     <image class="bz__item__img" src='../../static/images/trade/eth.png'/>
                     <view class="bz__item__titleBox">
@@ -248,10 +248,11 @@
             </view>
         </uni-transition>
         <uni-transition ref="ani" custom-class="transition" :mode-class="['fade']" :show="show_content=='3'">
-            <view class="content" :class="{'content--fixed':isFixed}">
-                <view class="payments">
+            <view class="content payments" :class="{'content--fixed':isFixed}">
+                <!-- <view class="payments">
                     <view class="test" v-for="index of 100" :key="index">payments---{{index}}</view>
-                </view>
+                </view> -->
+                <Payments />
             </view>
         </uni-transition>
         
@@ -262,8 +263,9 @@
   import Position from './components/Position.vue'
   import Order from './components/Order.vue'
   import Fills from './components/Fills.vue'
+  import Payments from './components/Payments'
   export default {
-    components: { Position, Order, Fills },
+    components: { Position, Order, Fills, Payments },
     data() {
       return {
           buyOrSell: 'buy',
@@ -286,29 +288,29 @@
         pickerChange(e){
 			// if(e.currentTarget.id=='type')
             this.index_list = e.detail.value
-		}
+		},
+        //导航栏固定定位逻辑
+        onScroll(){
+            if(this.counting_fixed){return}
+            this.counting_fixed = true
+
+            let query = uni.createSelectorQuery()
+		    query.select('.content').boundingClientRect((rect)=>{
+                if(rect.top>94){
+                    this.isFixed = false
+                }else{
+                    this.isFixed = true
+                }
+                setTimeout(()=>{
+                    this.counting_fixed = false
+                },10)
+		    }).exec()
+        }
     },
     computed: {
         limitOrMarket(){
             return this.list[this.index_list].name.toLowerCase()
         }
-    },
-    onPageScroll(e){
-        // 导航栏固定定位相关逻辑
-        if(this.counting_fixed){return}
-        this.counting_fixed = true
-
-        let query = uni.createSelectorQuery()
-		query.select('.content').boundingClientRect((rect)=>{
-            if(rect.top>50){
-                this.isFixed = false
-            }else{
-                this.isFixed = true
-            }
-            setTimeout(()=>{
-                this.counting_fixed = false
-            },10)
-		}).exec()
     }
   }
 </script>
@@ -661,8 +663,10 @@
     display: flex;
     &--fixed{
         position: fixed;
-        top: 0;
+        // top: 0;
+        top: 88rpx;
         left: 0;
+        z-index: 999;
     }
     &__item{
         height: 100rpx;
@@ -776,15 +780,28 @@
     width: 100vw;
     height: 100vh;
     position: fixed;
-    top: 116rpx;
+    // top: 116rpx;
+    top: 276rpx;
     left: 0;
     z-index: 99999;
+    transform: translateY(-200%);
+    transition: transform 0s linear 0.5s;
+    &--show{
+        transform: translateY(0);
+        transition: transform 0s;
+    }
     &__wrap{
         width: 100%;
         border-radius: 0 0 10rpx 10rpx;
         background: #282E33;
         box-sizing: border-box;
         padding: 0 30rpx;
+        height: 0;
+        overflow: hidden;
+        transition: all 0.5s;
+        &--show{
+            height: 280rpx;
+        }
         .bz__item{
             width: 100%;
             height: 140rpx;
