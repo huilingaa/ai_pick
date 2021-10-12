@@ -65,8 +65,6 @@
 
 <style lang="scss">
 	.Perpetuals {
-	
-
 		.sticky-box {
 			/* #ifndef APP-PLUS-NVUE */
 			display: flex;
