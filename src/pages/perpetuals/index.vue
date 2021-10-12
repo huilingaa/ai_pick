@@ -2,7 +2,7 @@
 	<view class="Perpetuals">
 		<my-header typeView="Perpetuals" />
 		<view class="wrap">
-			<v-tabs class="space" scroll='true' activeColor='#4DA2FA' fontSize='36rpx' v-model="activeTab" :scroll="false" :tabs="['Portfolio', 'Price', 'Trade']" @change="changeTab">
+			<v-tabs class="space" :fixed="true"  paddingItem="0 30rpx" activeColor='#4DA2FA' fontSize='36rpx' v-model="activeTab" :scroll="true" :tabs="['Portfolio', 'Price', 'Trade']" @change="changeTab">
 			</v-tabs>
 			<!-- <component :is="['Portfolio','Price','Trade'][activeTab]"></component> -->
 			<component :is="['Portfolio','Price'][activeTab]"></component>
@@ -54,6 +54,6 @@
 
 <style lang="scss">
 	.space{
-		border-bottom: 1px solid #1D262B;
+
 	}
 </style>

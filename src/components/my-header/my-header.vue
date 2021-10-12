@@ -15,17 +15,23 @@
         <view v-if="connectAddressId.length==0" @click.stop="handleSwitchPurse" class="ConnectWallet">Connect Wallet
         </view>
         <view v-else class="header_flex" @click.stop="handleDetailPurse">
-          <image :src="require(`../../static/images/wallet/ic_${name}@2x (1).png`)" />
+        <image v-if="walletName" :src="require(`../../static/images/wallet/ic_${walletName}@2x (1).png`)" />
           <span>{{connectAddressId | startEncryption}}</span>
         </view>
       </template>
     </my-navbar>
-    <my-choose-wallet ref="assetWalletPopup" />
-    <my-detail-wallet ref="assetWalletDetail" :name="name" :id="connectAddressId" />
+    <my-choose-wallet v-if="!connectAddressId" ref="assetWalletPopup" />
+    <my-detail-wallet v-else ref="assetWalletDetail" :name="walletName" :id="connectAddressId" />
+
   </view>
 </template>
 
 <script>
+  import {
+    mapState,
+    mapGetters
+  } from "vuex";
+
   export default {
     props: {
       typeView: {
@@ -35,11 +41,12 @@
     },
     data() {
       return {
-        connectAddressId: uni.getStorageSync('connectAddressId') || '',
-        name: 'metaMask'
-      }
+       }
     },
-    mounted() {},
+
+    computed: {
+      ...mapGetters('walletStore', ['connectAddressId','walletName']),
+    },
 
 
     methods: {
@@ -48,7 +55,8 @@
       },
       handleDetailPurse() {
         this.$refs.assetWalletDetail.open()
-      }
+      },
+
     }
   }
 </script>
@@ -81,7 +89,6 @@
     display: flex;
     align-items: center;
     height: 34rpx;
-
     image {
       width: 34rpx;
       height: 34rpx;

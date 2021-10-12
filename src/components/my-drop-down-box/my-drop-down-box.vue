@@ -99,6 +99,7 @@
   @import "../../styles/mixin";
 
   .dropDown {
+	  margin-top: 40rpx;
     // width: 670rpx;
     background: #ffffff;
     border-radius: 10rpx;

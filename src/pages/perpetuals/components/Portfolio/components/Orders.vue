@@ -1,7 +1,7 @@
 <template>
 	<view class="Perpetuals">
-		<view class="wrap">
-1212
+		<my-table title="Orders" :column="column" :tableData="tableData" emptyText="You have no orders."/>
+
 		</view>
 	</view>
 </template>
@@ -11,8 +11,9 @@
 		data() {
 			return {
 
-				activeTab: 0,
-				
+		column:['Market','Status','Side','Amount/Filled','Price','Trigger','Good Til'],
+		tableData:[],
+
 
 
 			};
@@ -32,5 +33,5 @@
 </script>
 
 <style lang="scss">
-	
+
 </style>

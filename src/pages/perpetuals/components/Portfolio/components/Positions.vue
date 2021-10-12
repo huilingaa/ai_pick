@@ -1,8 +1,6 @@
 <template>
 	<view class="Perpetuals">
-		<view class="wrap">
-			12312
-		</view>
+		<my-table title="Open Positions" :column="column" :tableData="tableData"  emptyText="You have no open position."/>
 	</view>
 </template>
 
@@ -10,16 +8,17 @@
 	export default {
 		data() {
 			return {
-				activeTab: 0,
+				column:['Market','Side','Size','Leverage','Liq.Price/Oracle','Unrealized P&L','Realized P&L','Realized P&L','Average Open/Close'],
+        tableData:[],
 			};
 		},
 		onShow() {
 
 		},
 		methods: {
-			changeTab(index) {
-				console.log('当前选中索引：' + index)
-			}
+			// changeTab(index) {
+			// 	console.log('当前选中索引：' + index)
+			// }
 		}
 
 	}

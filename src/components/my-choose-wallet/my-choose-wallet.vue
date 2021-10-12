@@ -1,11 +1,11 @@
 <template>
   <view>
     <!-- 选择钱包 -->
-    <my-drop-down-box title="Digital wallets" ref="cmpwalletpopup" leftIcon="close">
+    <my-drop-down-box title="Digital wallets"  height="720rpx"  ref="cmpwalletpopup" leftIcon="close">
       <view class="walletBox">
         <view>
           <view class="walletBox_item" v-for="(item,index) in walletLists" :key="index"
-            @click="handleConnectWallet(item.name)">
+            @click="handleConnectWallet(item.img)">
             <view class="walletBox_item-icon">
               <image :src="require(`../../static/images/wallet/ic_${item.img}@2x (1).png`)" />
             </view>
@@ -65,20 +65,17 @@
       },
       // 连接钱包
       handleConnectWallet(name) {
-        this.$store
-          .dispatch('walletStore/connectWallet', name)
-          .then((res) => {
-            this.connectAddressId = res;
-            console.log(name)
-            uni.showToast({
-              icon: 'none',
-              title: '连接成功',
-              duration: 2000,
-              success: () => {
-                this.$refs.cmpwalletpopup.close();
-              }
-            })
-          })
+        uni.showToast({
+          icon: 'none',
+          title: '连接成功',
+          duration: 2000,
+          success: () => {
+            this.$store
+              .dispatch('walletStore/connectWallet', name)
+            this.$refs.cmpwalletpopup.close();
+          }
+
+        })
       }
     },
   }

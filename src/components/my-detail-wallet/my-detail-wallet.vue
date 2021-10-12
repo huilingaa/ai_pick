@@ -4,7 +4,7 @@
     <my-drop-down-box title="Wallet" ref="cmpwalletpopup" height="566rpx" width="690rpx" leftIcon="close">
       <view class="walletBoxDetail">
         <view class='input input1'>
-          <image :src="require(`../../static/images/wallet/ic_${name}@2x (1).png`)" />
+          <image v-if="name" :src="require(`../../static/images/wallet/ic_${name}@2x (1).png`)" />
           <span>{{name}}</span>
         </view>
         <view class='input input2'>
@@ -40,7 +40,16 @@
 
       };
     },
-    props: ['name', 'id'],
+    props: {
+      name: {
+        type: String,
+        default: '90'
+      },
+      id: {
+        type: String,
+        default: ''
+      },
+    },
 
     methods: {
       // 打开弹窗
@@ -53,8 +62,18 @@
           duration: 2000
         });
       },
-      signOut(name) {
-
+      signOut() {
+        uni.showToast({
+          title: '断开成功',
+          icon: 'none',
+          duration: 2000,
+          success: () => {
+            this.$nextTick(() => {
+              this.$refs.cmpwalletpopup.close();
+              this.$store.dispatch('walletStore/closeWallet')
+            })
+          }
+        })
       }
     },
   }

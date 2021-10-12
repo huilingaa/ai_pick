@@ -14,10 +14,10 @@
             fontSize: current == i ? fontSize : fontSize,
             fontWeight: bold && current == i ? 'bold' : '',
             justifyContent: !scroll ? 'center' : '',
-            flex: scroll ? 'auto' : 1,
+            flex: scroll ? 0 : 1,
             padding: paddingItem
           }" @click="change(i)">
-					{{ field ? v[field] : v }} 
+					{{ field ? v[field] : v }}
 				</view>
 				<view v-if="!pills" class="v-tabs__container-line" :style="{
             background: lineColor,
@@ -26,7 +26,7 @@
             borderRadius: lineRadius,
             left: lineLeft + 'px',
             transform: `translateX(-${lineWidth / 2}px)`
-          }"></view>
+          }">{{lineWidth}}-</view>
 				<view v-else class="v-tabs__container-pills" :style="{
             background: pillsColor,
             borderRadius: pillsBorderRadius,
@@ -127,7 +127,7 @@
 			},
 			lineScale: {
 				type: Number,
-				default: 0.
+				default: .6
 			},
 			lineRadius: {
 				type: String,
@@ -284,7 +284,11 @@
 		.v-tabs__container-line{
 			display: none;
 		}
-		
+    .v-tabs__container{
+      height: 100px;
+      background-color: red;
+    }
+
 	}
 
 

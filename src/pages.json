@@ -47,32 +47,32 @@
     "list": [{
         "text": "Bluechip",
         "pagePath": "pages/Bluechip/index",
-        "iconPath": "static/images/tabbar/icon_tabbar_home2@3x.png",
-        "selectedIconPath": "static/images/tabbar/icon_tabbar_home1@3x.png"
+        "iconPath": "static/images/tabbar/ic_bluechip_normal@2x.png",
+        "selectedIconPath": "static/images/tabbar/ic_bluechip_press@2x.png"
       },
       {
         "text": "Perpetuals",
-        "pagePath": "pages/perpetuals/index",
-        "iconPath": "static/images/tabbar/icon_tabbar_signaln@3x.png",
-        "selectedIconPath": "static/images/tabbar/icon_tabbar_signal@3x.png"
+        "pagePath": "pages/Perpetuals/index",
+        "iconPath": "static/images/tabbar/ic_perpetuals_normal@2x.png",
+        "selectedIconPath": "static/images/tabbar/ic_perpetuals_press@2x.png"
       },
       {
         "text": "Invest",
         "pagePath": "pages/Invest/index",
-        "iconPath": "./static/images/tabbar/icon_tabbar_exchange2@3x.png",
-        "selectedIconPath": "./static/images/tabbar/icon_tabbar_exchange1@3x.png"
+        "iconPath": "./static/images/tabbar/ic_invest_normal@2x.png",
+        "selectedIconPath": "./static/images/tabbar/ic_invest_press@2x.png"
       },
       {
         "text": "Lending",
         "pagePath": "pages/Lending/index",
-        "iconPath": "static/images/tabbar/icon_tabbar_assets2@3x.png",
-        "selectedIconPath": "static/images/tabbar/icon_tabbar_assets1@3x.png"
+        "iconPath": "static/images/tabbar/ic_lending_normal@2x.png",
+        "selectedIconPath": "static/images/tabbar/ic_lending_press@2x.png"
       },
       {
         "text": "About",
         "pagePath": "pages/About/index",
-        "iconPath": "./static/images/tabbar/icon_tabbar_set2@3x.png",
-        "selectedIconPath": "./static/images/tabbar/icon_tabbar_set1@3x.png"
+        "iconPath": "./static/images/tabbar/ic_about_normal@2x.png",
+        "selectedIconPath": "./static/images/tabbar/ic_about_press@2x.png"
       }
     ]
   }

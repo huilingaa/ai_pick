@@ -20,8 +20,12 @@
       <template v-else-if="suffixIcon">
         <uni-icons v-if="suffixIcon" class="content-clear-icon" :type="suffixIcon" color="#c0c4cc" @click="onClickIcon('suffix')"></uni-icons>
       </template>
+   <template v-else-if="suffixIext">
+        <view  class="suffixIext" > {{suffixIext}}</view>
+      </template>
       <template v-else>
-        <uni-icons class="content-clear-icon" :class="{'is-textarea-icon':type==='textarea'}" type="clear" :size="clearSize"
+  <!--  {{suffixIext}} -->
+       <uni-icons class="content-clear-icon" :class="{'is-textarea-icon':type==='textarea'}" type="clear" :size="clearSize"
           v-if="clearable && focused && val " color="#c0c4cc" @click="onClear"></uni-icons>
       </template>
     </view>
@@ -124,6 +128,10 @@
         type: String,
         default: ''
       },
+      suffixIext: {
+        type: String,
+        default: ''
+      },
       suffixIcon: {
         type: String,
         default: ''
@@ -138,9 +146,9 @@
         type: Object,
         default () {
           return {
-            color: '#333',
-            disableColor: '#eee',
-            borderColor: '#e5e5e5'
+            color: '#181C1F',
+            disableColor: 'red',
+            borderColor: '#F4F4F4'
           }
         }
       }
@@ -286,6 +294,13 @@
 </script>
 
 <style lang="scss">
+  .suffixIext{
+
+    font-size: 28rpx;
+    font-weight: 400;
+
+    color: #4DA2FA;
+  }
 
  // 提币样式
 
@@ -296,6 +311,7 @@
 
   .withdrawMoney .uni-easyinput__content {
     min-height: 0;
+
   }
 
   .withdrawMoney .uni-easyinput__content-textarea {
@@ -351,20 +367,23 @@
     box-sizing: border-box;
     min-height: 36px;
   }
-
+.uni-input-wrapper{
+  padding: 0 10px;
+}
   .uni-easyinput__content-input {
     position: relative;
     overflow: hidden;
     flex: 1;
     width: auto;
-    line-height: 2;
-    font-size: 14px;
-    height: 112rpx;
+
+
+    font-size: 28rpx;
+    height: 88rpx;
     // padding-right: 10px;
 
     font-weight: 500;
     text-align: left;
-    color: #ffffff;
+    color: #181C1F;
 
   }
 
@@ -400,11 +419,18 @@
   }
   .uni-textarea-placeholder,
   .uni-input-placeholder {
-    font-size: 28rpx;
-    font-weight: 400;
+
+    
     text-align: left;
-    color: #4b5a7a;
-    line-height: 40rpx;
+
+
+
+    font-size: 28rpx;
+    font-family: PingFang SC;
+    font-weight: 400;
+
+    color: #A6B5BE;
+    opacity: 1;
   }
 
   .input-padding {
@@ -430,6 +456,7 @@
     border: 1px solid $uni-border-color;
     border-radius: 4px;
     box-sizing: border-box;
+        padding: 0 10px;
   }
 
   .uni-easyinput__right {
