@@ -4,9 +4,7 @@
 		<view class="wrap">
 			<v-tabs class="space" :fixed="true"  paddingItem="0 30rpx" activeColor='#4DA2FA' fontSize='36rpx' v-model="activeTab" :scroll="true" :tabs="['Portfolio', 'Price', 'Trade']" @change="changeTab">
 			</v-tabs>
-			<!-- <component :is="['Portfolio','Price','Trade'][activeTab]"></component> -->
-			<component :is="['Portfolio','Price'][activeTab]"></component>
-			<Trade v-show="activeTab==2" ref="trade" />
+			<component :is="['Portfolio','Price','Trade'][activeTab]"></component>
 
 		</view>
 	</view>
@@ -40,12 +38,6 @@
 		methods: {
 			changeTab(index) {
 				console.log('当前选中的项：' + index)
-			}
-		},
-
-		onPageScroll(){
-			if(this.activeTab==2){
-				this.$refs.trade.onScroll()
 			}
 		}
 

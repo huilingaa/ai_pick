@@ -1,5 +1,5 @@
 <template>
-    <view class="trade" :class="{'trade--fixed':isFixed}">
+    <view class="trade">
         <view class="box1">
             <view class="box1__menu" @click="show_ethOrBtc=!show_ethOrBtc">
                 <image class="box1__menu__img" src="../../static/images/trade/bt_sec.png" />
@@ -209,7 +209,7 @@
                 </view>
             </view>
         </view>
-        <scroll-view scroll-x class="nav" :class="{'nav--fixed':isFixed}">
+        <scroll-view scroll-x class="nav">
             <view class="nav__item"
                 :class="{'nav__item--active':show_content=='0'}"
                 @click="show_content='0'">
@@ -233,22 +233,22 @@
         </scroll-view>
         
         <uni-transition ref="ani" custom-class="transition" :mode-class="['fade']" :show="show_content=='0'">
-            <view class="content" :class="{'content--fixed':isFixed}">
+            <view class="content">
                 <Position />
             </view>
         </uni-transition>
 		<uni-transition ref="ani" custom-class="transition" :mode-class="['fade']" :show="show_content=='1'">
-            <view class="content" :class="{'content--fixed':isFixed}">
+            <view class="content">
                 <Order />
             </view>
         </uni-transition>
         <uni-transition ref="ani" custom-class="transition" :mode-class="['fade']" :show="show_content=='2'">
-            <view class="content" :class="{'content--fixed':isFixed}">
+            <view class="content">
                 <Fills />
             </view>
         </uni-transition>
         <uni-transition ref="ani" custom-class="transition" :mode-class="['fade']" :show="show_content=='3'">
-            <view class="content payments" :class="{'content--fixed':isFixed}">
+            <view class="content payments">
                 <!-- <view class="payments">
                     <view class="test" v-for="index of 100" :key="index">payments---{{index}}</view>
                 </view> -->
@@ -274,9 +274,6 @@
 
           show_ethOrBtc: false,
 
-          isFixed: false,
-          counting_fixed: false,
-
           list: [{name:'Limit',value:1},{name:'Market',value:2}],
           index_list: 0,
 
@@ -288,24 +285,7 @@
         pickerChange(e){
 			// if(e.currentTarget.id=='type')
             this.index_list = e.detail.value
-		},
-        //导航栏固定定位逻辑
-        onScroll(){
-            if(this.counting_fixed){return}
-            this.counting_fixed = true
-
-            let query = uni.createSelectorQuery()
-		    query.select('.content').boundingClientRect((rect)=>{
-                if(rect.top>94){
-                    this.isFixed = false
-                }else{
-                    this.isFixed = true
-                }
-                setTimeout(()=>{
-                    this.counting_fixed = false
-                },10)
-		    }).exec()
-        }
+		}
     },
     computed: {
         limitOrMarket(){
@@ -319,9 +299,9 @@
 @import './common/uni-nvue.scss';
 .trade{
     background: #181C1F;
-    &--fixed{
-        padding-top: 100rpx;
-    }
+    // &--fixed{
+    //     padding-top: 100rpx;
+    // }
 }
 .box1{
     height: 116rpx;
@@ -661,13 +641,10 @@
     background: #20262A;
     white-space: nowrap;
     display: flex;
-    &--fixed{
-        position: fixed;
-        // top: 0;
-        top: 88rpx;
-        left: 0;
-        z-index: 999;
-    }
+    position: sticky;
+    top: 88rpx;
+    left: 0;
+    z-index: 999;
     &__item{
         height: 100rpx;
         box-sizing: border-box;
@@ -690,11 +667,11 @@
 .content{
     box-sizing: border-box;
     padding-top: 40rpx;
-    height: calc(100vh - 100rpx);
-    overflow-y: hidden;
-    &--fixed{
-        overflow-y: scroll;
-    }
+    // height: calc(100vh - 100rpx);
+    // overflow-y: hidden;
+    // &--fixed{
+    //     overflow-y: scroll;
+    // }
     .topBox{
         height: 100rpx;
         background: #20262A;
