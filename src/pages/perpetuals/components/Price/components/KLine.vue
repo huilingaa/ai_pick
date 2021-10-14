@@ -29,16 +29,32 @@
 						<div class="select__item__menu">Min</div>
 					</div>
 					<div class="select__item">
-						<div class="select__item__menu select__item__menu--active">1min</div>
+						<div class="select__item__menu"
+						    :class="{'select__item__menu--active':KLine.Option.KLine.Period==4}"
+						    @click="ChangePeriod(4)">
+							1min
+						</div>
 					</div>
 					<div class="select__item">
-						<div class="select__item__menu">5min</div>
+						<div class="select__item__menu"
+						    :class="{'select__item__menu--active':KLine.Option.KLine.Period==5}"
+						    @click="ChangePeriod(5)">
+							5min
+						</div>
 					</div>
 					<div class="select__item">
-						<div class="select__item__menu">15min</div>
+						<div class="select__item__menu"
+						    :class="{'select__item__menu--active':KLine.Option.KLine.Period==6}"
+						    @click="ChangePeriod(6)">
+							15min
+						</div>
 					</div>
 					<div class="select__item">
-						<div class="select__item__menu">30min</div>
+						<div class="select__item__menu"
+						    :class="{'select__item__menu--active':KLine.Option.KLine.Period==7}"
+						    @click="ChangePeriod(7)">
+							30min
+						</div>
 					</div>
 				</div>
 				<div class="row">
@@ -46,10 +62,11 @@
 						<div class="select__item__menu">Hour</div>
 					</div>
 					<div class="select__item">
-						<div class="select__item__menu">1h</div>
-					</div>
-					<div class="select__item">
-						<div class="select__item__menu">4h</div>
+						<div class="select__item__menu"
+						    :class="{'select__item__menu--active':KLine.Option.KLine.Period==8}"
+							@click="ChangePeriod(8)">
+							1h
+						</div>
 					</div>
 				</div>
 				<div class="row">
@@ -57,61 +74,93 @@
 						<div class="select__item__menu">Days</div>
 					</div>
 					<div class="select__item">
-						<div class="select__item__menu">1d</div>
+						<div class="select__item__menu"
+						    :class="{'select__item__menu--active':KLine.Option.KLine.Period==0}"
+						    @click="ChangePeriod(0)">
+							1d
+						</div>
 					</div>
 				</div>
 			</div>
 			<div class="select__center" v-show="show_option=='1'">
 				<div class="row">
 					<div class="select__item">
-						<div class="select__item__menu select__item__menu--active">Candles</div>
+						<div class="select__item__menu select__item__menu--active" @click="switchToKLine">Candles</div>
 					</div>
-					<div class="select__item">
+					<!-- <div class="select__item">
 						<div class="select__item__menu">Bars</div>
-					</div>
+					</div> -->
 					<div class="select__item">
-						<div class="select__item__menu">Line</div>
+						<div class="select__item__menu" @click="createMinuteLine">Line</div>
 					</div>
-					<div class="select__item">
+					<!-- <div class="select__item">
 						<div class="select__item__menu">Area</div>
 					</div>
 					<div class="select__item">
 						<div class="select__item__menu">Baseline</div>
-					</div>
+					</div> -->
 				</div>
-				<div class="row">
+				<!-- <div class="row">
 					<div class="select__item">
 						<div class="select__item__menu">Hollow Candles</div>
 					</div>
 					<div class="select__item">
 						<div class="select__item__menu">Heikin Ashi</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 			<div class="select__center" v-show="show_option=='2'">
 				<div class="row">
 					<div class="select__item">
-						<div class="select__item__menu select__item__menu--active">MACD</div>
+						<div class="select__item__menu"
+						    :class="{'select__item__menu--active':KLine.Option.Windows[1].Index=='MACD'}"
+						    @click='ChangeIndecator("MACD")'>
+							MACD
+						</div>
 					</div>
 					<div class="select__item">
-						<div class="select__item__menu">KDJ</div>
+						<div class="select__item__menu"
+						    :class="{'select__item__menu--active':KLine.Option.Windows[1].Index=='KDJ'}"
+						    @click='ChangeIndecator("KDJ")'>
+							KDJ
+						</div>
 					</div>
 					<div class="select__item">
-						<div class="select__item__menu">BOLL</div>
+						<div class="select__item__menu"
+						    :class="{'select__item__menu--active':KLine.Option.Windows[1].Index=='BOLL'}"
+						    @click='ChangeIndecator("BOLL")'>
+							BOLL
+						</div>
 					</div>
 					<div class="select__item">
-						<div class="select__item__menu">RSI</div>
+						<div class="select__item__menu"
+						    :class="{'select__item__menu--active':KLine.Option.Windows[1].Index=='RSI'}"
+						    @click='ChangeIndecator("RSI")'>
+							RSI
+						</div>
 					</div>
 					<div class="select__item">
-						<div class="select__item__menu">OBV</div>
+						<div class="select__item__menu"
+						    :class="{'select__item__menu--active':KLine.Option.Windows[1].Index=='OBV'}"
+						    @click='ChangeIndecator("OBV")'>
+							OBV
+						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="select__item">
-						<div class="select__item__menu">VR</div>
+						<div class="select__item__menu"
+						    :class="{'select__item__menu--active':KLine.Option.Windows[1].Index=='VR'}"
+						    @click='ChangeIndecator("VR")'>
+							VR
+						</div>
 					</div>
 					<div class="select__item">
-						<div class="select__item__menu">CCI</div>
+						<div class="select__item__menu"
+						    :class="{'select__item__menu--active':KLine.Option.Windows[1].Index=='CCI'}"
+						    @click='ChangeIndecator("CCI")'>
+							CCI
+						</div>
 					</div>
 				</div>
 			</div>
@@ -119,7 +168,7 @@
 		
 		<!--  #ifdef  H5 -->
 		<div>
-			<div class='kline' id="kline" ref='kline'></div>
+			<div class='kline' id="kline" ref='kline' v-if="show_chart"></div>
 		</div>
 		<!--  #endif -->
 		
@@ -146,6 +195,8 @@
 </template>
 
 <script>
+import {mixinMinuteLine} from './mixinMinuteLine'
+
 // #ifdef H5	
 import HQChart from '../umychart_uniapp_h5/umychart.uniapp.h5.js'
 // #endif
@@ -157,18 +208,20 @@ import {JSCommonHQStyle} from '../umychart.uniapp/umychart.style.wechat.js'
 
 var pako = require('pako');
 
+import { mapActions } from 'vuex'
+
 function DefaultData() { }
 
 DefaultData.GetKLineOption = function () 
 {
     let data = 
     {
-        Type: '历史K线图', 
+        Type: '历史K线图', //历史K线图
         
         Windows: //窗口指标
         [
             {Index:"MA",Modify: false, Change: false}, 
-            {Index:"VOL",Modify: false, Change: false}
+            {Index:"MACD",Modify: false, Change: true}
         ], 
  
 		IsAutoUpdate:false,           //是自动更新数据(不自动更新由外部更新)
@@ -206,23 +259,41 @@ DefaultData.GetKLineOption = function ()
 		ExtendChart:
 		[
 			{Name:'KLineTooltip' },	//开启手机端tooltip
-		], 
+		],
         
     };
  
     return data;
 }
- 
+
 var g_KLine={ JSChart:null };
 
-export default 
+//周期枚举
+var KLINE_PERIOD_ID=
 {
+    KLINE_DAY_ID:0,            //日线
+    KLINE_WEEK_ID:1,           //周线
+    KLINE_MONTH_ID:2,          //月线
+    KLINE_YEAR_ID:3,           //年线
+
+    KLINE_MINUTE_ID:4,         //1分钟
+    KLINE_5MINUTE_ID:5,        //5分钟
+    KLINE_15MINUTE_ID:6,       //15分钟
+    KLINE_30MINUTE_ID:7,       //30分钟
+    KLINE_60MINUTE_ID:8        //60分钟
+}
+
+export default
+{
+	mixins: [mixinMinuteLine],
 	data() 
 	{
 		let data=
 		{
-			Symbol:'btcusdt.BIT', 
+			Symbol:'btcusdt.BIT',
 			OriginalSymbol:'btcusdt',
+			// Symbol:'ethusdt.BIT',
+			// OriginalSymbol:'ethusdt',
 			ChartWidth:300,
 			ChartHeight:600,
 			KLine:
@@ -231,11 +302,14 @@ export default
 			},
 			
 			// WSUrl:'wss://api.xfilecache.com/ws',
-            WSUrl: 'ws://p_hb_ws.ratafee.nl/',
+            WSUrl: 'ws://p_hb_ws.ratafee.nl/', //实际转发到wss://api.huobi.pro/ws
+			// market.$symbol.depth.$type  ws://p_hb_ws.ratafee.nl/market.btcusdt.BIT
+			// WSUrl: 'ws://p_hb_ws.ratafee.nl/market.btcusdt.BIT',
 			SocketOpen:false,
 			LastSubString:null,     //最后一个订阅的数据
 
-			show_option: false
+			show_option: false,
+			show_chart: true
 		};
 		
 		return data;
@@ -244,10 +318,28 @@ export default
 	name:'KLine',
 
     mounted(){
-        // #ifdef H5
-		this.OnSize();
-		this.CreateKLineChart(); 
-		// #endif
+		uni.closeSocket()
+		{
+            HQChart.JSConsole.Chart.Log=function() { }    //不输出图形日志
+            HQChart.JSConsole.Complier.Log=function() { }	//不输出指标脚本执行日志
+        }
+		uni.getSystemInfo({
+		    success:  (res) =>
+			  {
+				  var width=res.windowWidth;
+				  var height=res.windowHeight;
+				  this.ChartWidth=width - 30;
+				  // this.ChartHeight=height+500;
+				  this.$nextTick(()=>
+				  {
+					  // #ifdef H5
+					  
+					  this.OnSize();
+					  this.CreateKLineChart(); 
+					  // #endif 
+				  })
+		    }
+		});
     },
 	
 	onLoad() 
@@ -293,14 +385,21 @@ export default
 			g_KLine.JSChart=null;
 		}
 	},
+
+	destroyed(){
+		uni.closeSocket()
+		this.SocketOpen = null
+	},
 	
-	methods: 
+	methods:
 	{
 		//对外接口
 		ChangePeriod(period)  //周期切换
 		{
 			//var symbol=this.Symbol;
 			g_KLine.JSChart.ChangePeriod(period);
+			this.KLine.Option.KLine.Period = period
+			console.log(this.KLine.Option.KLine.Period)
 		},
 		
 		ChangeSymbol(symbol)   //切换股票
@@ -310,6 +409,14 @@ export default
 			this.OriginalSymbol=symbol;
 			this.Symbol=symbol+'.BIT';
 			g_KLine.JSChart.ChangeSymbol(this.Symbol);
+		},
+
+		ChangeIndecator(name)  //切换指标
+		{
+			// #ifdef H5
+			this.KLine.Option.Windows[1].Index = name
+			g_KLine.JSChart.ChangeIndex(1,name)
+			// #endif
 		},
 				
 		OnSize()
@@ -336,9 +443,10 @@ export default
 			
 			var blackStyle=HQChart.HQChartStyle.GetStyleConfig(HQChart.STYLE_TYPE_ID.BLACK_ID);
 			blackStyle.FrameTitleBGColor = 'rgb(24,28,31)'
+			blackStyle.TitleFont = '12px 微软雅黑'
 			HQChart.JSChart.SetStyle(blackStyle);
 			//this.$refs.kline.style.backgroundColor=blackStyle.BGColor;	//div背景色设置黑色
-						
+
 		    this.KLine.Option.Symbol=this.Symbol;
 		    let chart=HQChart.JSChart.Init(this.$refs.kline);
 			this.KLine.Option.NetworkFilter=this.NetworkFilter;
@@ -382,6 +490,7 @@ export default
 		
 		NetworkFilter(data, callback)
 		{
+			if(!this.show_chart){return}
 			console.log('[KLineChart::NetworkFilter] data', data);
 			switch(data.Name)
 			{
@@ -431,6 +540,8 @@ export default
 					this.SocketOpen=true;
 					console.log(event);
 					var message=JSON.stringify(data.SendData);
+					// console.log('mm:')
+					// console.log(message)
 					uni.sendSocketMessage({data:message});
 					if (data.SendData.sub) this.LastSubString=data.SendData.sub;
 				});
@@ -440,15 +551,19 @@ export default
 				this.SendUnSubscribeMessage();
 				var message=JSON.stringify(data.SendData);
 				uni.sendSocketMessage({data:message});
+				// console.log('medd')
+				// console.log(message)
 				if (data.SendData.sub) this.LastSubString=data.SendData.sub;    //保存最后一个订阅信息
 			}
 
 			uni.onSocketMessage((event)=>
-			{ 
+			{
 				let ploydata = new Uint8Array(event.data);
 				let msg = pako.inflate(ploydata, {to: 'string'});
-				//console.log("[KLineChart::RequestWSData] recv ", msg);
+				// console.log("[KLineChart::RequestWSData] recv ", msg);
 				var recvData=JSON.parse(msg);
+				// console.log('hhhhhhhhhhh')
+				// console.log(recvData)
 				if (recvData.ping)
 				{
 					this.SendWSHeartMessage();  //回复服务器心跳包
@@ -605,7 +720,6 @@ export default
 			// #endif
 		},
 		
-		
 		//日K数据下载
         RequestHistoryData(data,callback) 
         {
@@ -619,8 +733,8 @@ export default
             this.RequestWSData(obj, (recvData,data)=>{ this.RecvHistoryData(recvData,data); });
         },
 
-        RecvHistoryData(recvData,data)  //接收到日线数据 转化成hqchart格式数据
-        {
+		//接收到日线数据 转化成hqchart格式数据
+        RecvHistoryData(recvData,data){
             if (recvData.rep!=data.SendData.req) return;
 
             var hqChartData={code:0, data:[]};
@@ -709,7 +823,6 @@ export default
 			// #endif
         },
 
-
 		///
 		//手势事件 app/小程序才有
 		//KLine事件
@@ -727,6 +840,36 @@ export default
 		{
 		  if (g_KLine.JSChart) g_KLine.JSChart.OnTouchEnd(event);
 		},
+
+		...mapActions('priceStore',['setPrice']),
+
+		ClearChart(){
+			if(g_KLine.JSChart){
+				g_KLine.JSChart.ChartDestory()
+				g_KLine.JSChart = null
+			}
+			// #ifdef H5
+			let divKLine = document.getElementById('kline')
+			while(divKLine.hasChildNodes()){
+				divKLine.removeChild(divKLine.lastChild)
+			}
+			// #endif
+		},
+
+		createMinuteLine(){
+			console.log('createMinuteLine')
+			this.ClearChart()
+			uni.closeSocket()
+			this.SocketOpen = null
+			this.CreateMinuteChartM();
+		},
+
+		// 从分时图切换至K线图
+		switchToKLine(){
+			console.log('switchToKLine')
+			this.ClearChartM()
+			this.CreateKLineChart()
+		}
 	}
 }
 </script>

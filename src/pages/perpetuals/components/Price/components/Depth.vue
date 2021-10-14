@@ -1,10 +1,14 @@
 <template>
-  <div>Depth</div>
+  <div>
+    <DepthChart />
+  </div>
 </template>
 
 <script>
+import DepthChart from './DepthChart'
 export default {
-    name: 'Depth'
+    name: 'Depth',
+    components: { DepthChart }
 }
 </script>
 

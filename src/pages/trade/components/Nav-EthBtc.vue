@@ -3,30 +3,32 @@
         <view class="box1">
             <view class="box1__menu" @click="show_ethOrBtc=!show_ethOrBtc">
                 <image class="box1__menu__img" src="../../../static/images/trade/bt_sec.png" />
-                <span class="box1__menu__title">BTC/USDT</span>
+                <span class="box1__menu__title">
+                    {{symbol=='btcusdt' ? 'BTC/USDT' : 'ETH/USDT'}}
+                </span>
                 <image class="box1__menu__img2" src="../../../static//images/trade/ic_b_h.png" />
             </view>
-            <span class="box1__money">$81155.3</span>
+            <!-- <span class="box1__money">$81155.3</span> -->
         </view>
         <view class="bz" :class="{'bz--show':show_ethOrBtc}" @click="show_ethOrBtc=false">
             <view class="bz__wrap" :class="{'bz__wrap--show':show_ethOrBtc}">
-                <view class="bz__item">
+                <view class="bz__item" @click="ChangeSymbol('ethusdt')">
                     <image class="bz__item__img" src='../../../static/images/trade/eth.png'/>
                     <view class="bz__item__titleBox">
                         <span class="bz__item__titleBox__title">Ethereum</span>
                         <span class="bz__item__titleBox__subTitle">ETH-USD</span>
                     </view>
-                    <span class="bz__item__money">$2,013.52</span>
-                    <view class="bz__item__rate">+5.35%</view>
+                    <span class="bz__item__money">{{ethData.price}}</span>
+                    <view class="bz__item__rate">{{ethData.chg}}</view>
                 </view>
-                <view class="bz__item bz__item--btc">
+                <view class="bz__item bz__item--btc" @click="ChangeSymbol('btcusdt')">
                     <image class="bz__item__img" src='../../../static/images/trade/btc.png'/>
                     <view class="bz__item__titleBox">
                         <span class="bz__item__titleBox__title">Bitcoin</span>
                         <span class="bz__item__titleBox__subTitle">BTC-USD</span>
                     </view>
-                    <span class="bz__item__money">$2,013.52</span>
-                    <view class="bz__item__rate">-0.24%</view>
+                    <span class="bz__item__money">{{btcData.price}}</span>
+                    <view class="bz__item__rate">{{btcData.chg}}</view>
                 </view>
             </view>
         </view>
@@ -34,12 +36,25 @@
 </template>
 
 <script>
+import { mapState } from "vuex"
 export default{
     name: 'Nav-EthBtc',
     data(){
         return{
             show_ethOrBtc: false,
+
+            symbol: 'btcusdt' //ethusdt btcusdt
         }
+    },
+    methods:{
+        ChangeSymbol(symbol){
+            if(this.symbol==symbol){return}
+            this.symbol = symbol
+            this.$emit('ChangeSymbol', symbol)
+        }
+    },
+    computed: {
+        ...mapState('priceStore',['btcData','ethData'])
     }
 }
 </script>

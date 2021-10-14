@@ -1,7 +1,8 @@
 <script>
   import {
     mapState,
-    mapGetters
+    mapGetters,
+    mapActions
   } from 'vuex';
   export default {
     computed: {
@@ -53,6 +54,9 @@
       uni.preloadPage({
         url: '/pages/mine/index'
       })
+
+      // 全局获取数字货币数据
+      this.setPrice()
     },
     onShow: function() {
       uni.getNetworkType({
@@ -73,6 +77,7 @@
       //     })
       //   })
       // }
+      ...mapActions('priceStore',['setPrice'])
     }
   }
 </script>
