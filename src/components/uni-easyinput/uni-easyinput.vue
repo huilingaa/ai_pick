@@ -21,7 +21,7 @@
         <uni-icons v-if="suffixIcon" class="content-clear-icon" :type="suffixIcon" color="#c0c4cc" @click="onClickIcon('suffix')"></uni-icons>
       </template>
    <template v-else-if="suffixIext">
-        <view  class="suffixIext" > {{suffixIext}}</view>
+        <view  class="suffixIext" @click="onClickText(val)"> {{suffixIext}}</view>
       </template>
       <template v-else>
   <!--  {{suffixIext}} -->
@@ -211,6 +211,9 @@
        */
       init() {
 
+      },
+      onClickText(type) {
+        this.$emit('textClick', type)
       },
       onClickIcon(type) {
         this.$emit('iconClick', type)

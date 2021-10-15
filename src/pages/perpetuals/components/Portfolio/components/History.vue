@@ -26,54 +26,7 @@
         column1: ['Time', 'Action', 'Status', 'Amount/Fee', 'Transaction'],
         column2: ['Time', 'Market', 'Payment', 'Funding Rate', 'Position', 'Oracle Price'],
         tableData:[],
-        tableData1: [{
-            name: 'sdfg'
-          },
-          {
-            name: 'sdfg'
-          },
-          {
-            name: 'sdfg'
-          },
-          {
-            name: 'sdfg'
-          },
-          {
-            name: 'sdfg'
-          },
-          {
-            name: 'sdfg'
-          },
-          {
-            name: 'sdfg'
-          },
-          {
-            name: 'sdfg'
-          },
-          {
-            name: 'sdfg'
-          },
-          {
-            name: 'sdfg'
-          },
-          {
-            name: 'sdfg'
-          },
-          {
-            name: 'sdfg'
-          },
-          {
-            name: 'sdfg'
-          },
-          {
-            name: 'sdfg'
-          },
-          {
-            name: 'sdfg'
-          }
-        ]
-
-
+       
 
       };
     },

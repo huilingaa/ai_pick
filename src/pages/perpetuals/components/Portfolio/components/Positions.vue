@@ -16,11 +16,8 @@
 
 		},
 		methods: {
-			// changeTab(index) {
-			// 	console.log('当前选中索引：' + index)
-			// }
+	
 		}
-
 	}
 </script>
 

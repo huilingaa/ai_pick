@@ -4,7 +4,7 @@
       "path": "pages/Bluechip/index"
     },
     {
-      "path": "pages/perpetuals/index"
+      "path": "pages/Perpetuals/index"
     },
     {
       "path": "pages/Invest/index"
@@ -52,7 +52,7 @@
       },
       {
         "text": "Perpetuals",
-        "pagePath": "pages/perpetuals/index",
+        "pagePath": "pages/Perpetuals/index",
         "iconPath": "static/images/tabbar/ic_perpetuals_normal@2x.png",
         "selectedIconPath": "static/images/tabbar/ic_perpetuals_press@2x.png"
       },

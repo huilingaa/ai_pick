@@ -70233,17 +70233,17 @@ JSComplier.Execute=function(code,option,errorCallback)
     {
         try
         {
-            JSConsole.Complier.Log('[JSComplier.Execute]',code,option);
+            // JSConsole.Complier.Log('[JSComplier.Execute]',code,option);
 
-            JSConsole.Complier.Log('[JSComplier.Execute] parser .....');
+            // JSConsole.Complier.Log('[JSComplier.Execute] parser .....');
             let parser=new JSParser(code);
             parser.Initialize();
             let program=parser.ParseScript(); 
             
             let ast=program;
-            JSConsole.Complier.Log('[JSComplier.Execute] parser finish.', ast);
+            // JSConsole.Complier.Log('[JSComplier.Execute] parser finish.', ast);
 
-            JSConsole.Complier.Log('[JSComplier.Execute] execute .....');
+            // JSConsole.Complier.Log('[JSComplier.Execute] execute .....');
             let execute=new JSExecute(ast,option);
             execute.ErrorCallback=errorCallback;        //执行错误回调
             execute.JobList=parser.Node.GetDataJobList();

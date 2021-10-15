@@ -1,7 +1,7 @@
 <template>
 	<view :id="elId" class="v-tabs">
 		<scroll-view id="scrollContainer" :scroll-x="scroll" :scroll-left="scroll ? scrollLeft : 0"
-			:scroll-with-animation="scroll" :style="{ position: fixed ? 'fixed' : 'relative', zIndex: 1993 }">
+			:scroll-with-animation="scroll" :style="{ position: fixed ? 'fixed' : 'relative', zIndex: 993 }">
 			<view class="v-tabs__container" :style="{
           display: scroll ? 'inline-flex' : 'flex',
           whiteSpace: scroll ? 'nowrap' : 'normal',

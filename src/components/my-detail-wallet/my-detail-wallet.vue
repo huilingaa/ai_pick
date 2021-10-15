@@ -9,7 +9,7 @@
         </view>
         <view class='input input2'>
           <span>{{id | encryption}}</span>
-          <image v-clipboard:copy="id" v-clipboard:success="onCopySuccess"
+          <image v-clipboard:copy="id" v-clipboard:success="onCopySuccess" v-clipboard:error="copyError"
             src="../../static/images/wallet/ic_copy@2x.png" />
         </view>
         <view class='btn' @click="signOut">Broken Link</view>
@@ -56,9 +56,16 @@
       open() {
         this.$refs.cmpwalletpopup.open()
       },
-      onCopySuccess(e) {
+      onCopySuccess() {
         uni.showToast({
           title: '复制成功',
+          duration: 2000
+        });
+      },
+      // 复制失败时的回调函数
+      copyError() {
+        uni.showToast({
+          title: '复制失败',
           duration: 2000
         });
       },

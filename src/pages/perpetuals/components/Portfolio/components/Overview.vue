@@ -27,7 +27,7 @@
         </div>
       </div>
       <div class="font">Connect your Ethereum wallet todeposit funds & start trading.</div>
-      <div class="btn" v-if="!connectAddressId" @click.stop="handleSwitchPurse">Connect wallet</div>
+      <div class="btn" v-if="!connectAddressId" @click.stop="handleSwitchPurse()">Connect wallet</div>
       <div class="WithdrawalsDeposit" v-else>
         <div @click="WithdrawalsDeposit('Withdraw')">Withdrawals</div>
         <div @click="WithdrawalsDeposit('Deposit')">Deposit</div>
@@ -35,8 +35,8 @@
     </view>
     <my-table title="Markets" :column="column" :tableData="tableData" emptyText="You have no Markets." />
     <!-- 提笔或充币 -->
-    <my-drop-down-box :title="title" ref="cmpwalletpopup" :height="title=='Withdraw'?'888rpx':'828rpx'" width="690rpx" leftIcon="close"
-      class="cmpwalletpopup">
+    <my-drop-down-box :title="title" ref="cmpwalletpopup" :height="title=='Withdraw'?'888rpx':'828rpx'" width="690rpx"
+      leftIcon="close" class="cmpwalletpopup">
 
       <view class="titleModel">资产</view>
 
@@ -45,13 +45,14 @@
         </easy-select>
       </view>
       <view class="titleModel">金额</view>
-      <uni-easyinput suffixIext="最大值" v-model="value" placeholder="请输入金额" @iconClick="onClick"></uni-easyinput>
+      <uni-easyinput suffixIext="最大值" v-model="value" placeholder="请输入金额" @textClick="onClick"></uni-easyinput>
       <view class="flexFont">
         <view>
-          可用额度 0.000000
+          可用额度 {{AvailableCredit || '_'}}
         </view>
         <view>
-          $59.25
+          <!-- 因为暂时没有找到兑换的api，暂时隐藏起来 -->
+     <!--     $59.25 -->
         </view>
       </view>
 
@@ -65,7 +66,7 @@
         </view>
       </view>
 
-      <view class='btn' @click="signOut">{{title}}</view>
+      <view class='btn' @click="transfer(options)">{{title}}</view>
     </my-drop-down-box>
     </script>
   </view>
@@ -76,23 +77,42 @@
     mapState,
     mapGetters
   } from "vuex";
+  import {
+    getBalanceNumber,
+    getFullDisplayBalance,
+    getFullMulBalance
+  } from '../../../../../utils/formatBalance.js'
+  import {
+    useWeb3
+  } from '../../../../../store/modules/walletStore.js'
   export default {
     data() {
       return {
         title: '',
-        value:'',
+        value: '',
         selecValue: {},
+        AvailableCredit: '',
+        // {
+        //   img: 'usdt@2x',
+        //   name: 'USDT'
+        // },
         options: [{
-          img: 'usdt@2x',
-          name: 'USDT'
-        }, {
+          id: '0x71145608a29cB5Eb51D996856ED0f90c85e97863',
           img: 'usdc@2x',
-          name: 'USDC'
+          name: 'USDC',
+
+
+        }, {
+          id: '0x5975776D149bDd8d9d72951590393611C316c8e8',
+          img: 'usdc@2x',
+          name: 'ETH'
         }],
+        selectOptions: {},
 
         activeTab: 0,
         column: ["Market", "Index Price", '24h Change', "1h Funding", "Open Interest"],
         tableData: [],
+        // 系统切换账号时要及时经常到
 
 
       };
@@ -107,18 +127,56 @@
     },
 
     methods: {
-      signOut(){
-         this.$refs.cmpwalletpopup.close()
+      transfer() {
+
+        var options = this.selectOptions;
+        var that = this;
+        // var value=this.value
+        // 以太方的
+        // if (options.name == "ETH") {
+        const web3 = useWeb3();
+        var parmas = {
+          from: this.connectAddressId,
+          to: options.id,
+          value: web3.utils.toWei(this.value.toString(), 'ether')
+        }
+        console.log(parmas)
+        let value1 = web3.utils.toWei(this.value.toString(), 'ether');
+        console.log('zxgfml', value1)
+        web3.eth.sendTransaction(parmas)
+          .then(function(receipt) {
+            uni.showToast({
+              icon: 'none',
+              title: 'Your 59.253234USDC recharge will be available after 10 confirmations.',
+              duration: 2000,
+              success: () => {
+                that.value = "";
+                that.$refs.cmpwalletpopup.close()
+              }
+            })
+          });
+        //}
+      },
+      onClick(a) {
+        this.value = this.AvailableCredit;
+      },
+      signOut() {
+        this.$refs.cmpwalletpopup.close()
       },
       selectOne(options) {
-        console.log(options.name)
+        this.selectOptions = options;
+        const web3 = useWeb3();
+        web3.eth.getBalance(options.id)
+          .then((res) => {
+            this.AvailableCredit = getFullDisplayBalance(res)
+          });
       },
       WithdrawalsDeposit(name) {
         this.title = name;
         this.$refs.cmpwalletpopup.open()
       },
       handleSwitchPurse() {
-        console.log(' this.$refs.assetWalletPopup', this.$refs.assetWalletPopup)
+        this.$bus.$emit("ConnectWallet")
       },
       changeTab(index) {
         console.log('当前选中索引：' + index)
@@ -128,8 +186,9 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .cmpwalletpopup {
+
     .titleModel {
       font-size: 28rpx;
       font-family: PingFang SC;

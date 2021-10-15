@@ -209,7 +209,7 @@
 	.uni-popup {
 		position: fixed;
 		/* #ifndef APP-NVUE */
-		z-index: 1999;
+		z-index: 994;
 		/* #endif */
 	}
 

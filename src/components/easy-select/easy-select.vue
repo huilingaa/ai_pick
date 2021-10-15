@@ -8,7 +8,7 @@
       <image class="icon" v-if="currentSelect['img']"
         :src="require(`../../static/images/wallet/${currentSelect['img']}.png`)" />
       <text v-if="currentSelect['name']">{{currentSelect.name}}</text>
-      <view v-else>
+      <view v-else style="color:#A6B5BE">
         请选择
       </view>
     </view>
@@ -255,7 +255,7 @@
     padding: 0 20rpx;
     position: relative;
     white-space: nowrap;
-    font-size: 14px;
+    font-size: 15px;
     color: #606266;
     height: 80rpx;
     display: flex;

@@ -58,11 +58,13 @@
       };
     },
 
+
     methods: {
       // 打开弹窗
       open() {
         this.$refs.cmpwalletpopup.open()
       },
+
       // 连接钱包
       handleConnectWallet(name) {
         uni.showToast({
@@ -95,7 +97,6 @@
 
     &_item {
       display: flex;
-
       align-items: center;
       width: 100%;
       height: 70rpx;
@@ -103,19 +104,15 @@
       background: #4DA2FA;
       border-radius: 10rpx;
       margin-bottom: 38rpx;
-
-
       &.active {
         background-image: linear-gradient(270deg, #a6bcfb 0%, #989efd 19%, #53b1fe 47%, #188fda 83%, #009aff 100%);
         padding: 1px;
-
         .walletBox_item-info {
           border-radius: 20rpx;
           width: 100%;
           height: 100%;
           background: #071423;
           display: inline-block;
-
         }
       }
 
@@ -123,22 +120,16 @@
         width: 34rpx;
         height: 34rpx;
         margin: 0 42rpx;
-
         image {
           width: 100%;
           height: 100%;
         }
       }
 
-
-
-
       &-label {
         font-size: 32rpx;
         font-weight: bold;
         color: #FFFFFF;
-
-
       }
 
       &-back {

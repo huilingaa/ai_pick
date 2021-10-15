@@ -34,6 +34,7 @@ Vue.config.productionTip = false
 Vue.prototype.$bigNumber = BigNumber
 // Vue.prototype.$clipboard = clipboard
 Vue.prototype._i18n = i18n
+Vue.prototype.$bus = new Vue();
 Vue.prototype.$api = handleRequest
 
 
