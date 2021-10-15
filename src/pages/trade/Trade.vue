@@ -582,7 +582,7 @@
     position: sticky;
     top: 88rpx;
     left: 0;
-    z-index: 999;
+    z-index: 993;
     &__item{
         height: 100rpx;
         box-sizing: border-box;

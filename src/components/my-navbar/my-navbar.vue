@@ -254,7 +254,7 @@
 
   .uni-navbar--fixed {
     position: fixed;
-    z-index: 998;
+    z-index: 993;
   }
 
   .uni-navbar--shadow {

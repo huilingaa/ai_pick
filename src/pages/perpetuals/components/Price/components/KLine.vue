@@ -916,7 +916,7 @@ export default
 	top: 0;
 	left: 0;
 	background: rgba(0,0,0,0.3);
-	z-index: 999;
+	z-index: 993;
 	display: flex;
 	justify-content: center;
 	align-items: center;

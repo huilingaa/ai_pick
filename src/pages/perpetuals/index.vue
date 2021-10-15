@@ -13,9 +13,9 @@
 
 <script>
   import Portfolio from './components/Portfolio/index.vue';
-  // import Price from './components/Price/index.vue';
+  import Price from './components/Price/Price.vue';
   // import Trade from './components/Trade/index.vue';
-  import Price from './components/Price/index.vue';
+  // import Price from './components/Price/index.vue';
   import Trade from '../trade/Trade.vue'
   import {
     mapState,

@@ -163,7 +163,7 @@ export default{
     // top: 88rpx;
     top: 158rpx;
     left: 0;
-    z-index: 998;
+    z-index: 993;
     &__item{
         height: 100rpx;
         box-sizing: border-box;
