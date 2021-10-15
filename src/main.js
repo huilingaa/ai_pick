@@ -17,6 +17,10 @@ import MescrollBody from "@/components/mescroll-uni/mescroll-body.vue"
 import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue"
 import myheader from '@/components/my-header/my-header.vue'
 
+import $ from 'jquery';
+window.jQuery = $;
+window.$ = $;
+
 Vue.component('mescroll-body', MescrollBody)
 Vue.component('mescroll-uni', MescrollUni)
 Vue.component('my-header', myheader)

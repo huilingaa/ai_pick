@@ -1,26 +1,26 @@
 <template>
     <view class="price">
-        <NavEthBtc />
+        <NavEthBtc @ChangeSymbol='ChangeSymbol' />
         <view class="moneyBox">
             <view class="moneyBox__left">
-                <h1 class="bigMoney">$6535.9</h1>
+                <h1 class="bigMoney">{{btcData.price}}</h1>
                 <view class="rateMoney">
-                    <span class="rateMoney__item">+5.35%</span>
-                    <span class="rateMoney__item">$266.9</span>
+                    <span class="rateMoney__item">{{btcData.chg}}</span>
+                    <span class="rateMoney__item">{{btcData.chgPrice}}</span>
                 </view>
             </view>
             <view class="moneyBox__right">
                 <view class="moneyBox__right__item">
                     <span>高</span>
-                    <span class="moneyBox__right__item__money">$12,660.2</span>
+                    <span class="moneyBox__right__item__money">{{btcData.high}}</span>
                 </view>
                 <view class="moneyBox__right__item">
                     <span>低</span>
-                    <span class="moneyBox__right__item__money">$25,128.6</span>
+                    <span class="moneyBox__right__item__money">{{btcData.low}}</span>
                 </view>
                 <view class="moneyBox__right__item">
                     <span>开</span>
-                    <span class="moneyBox__right__item__money">$22,599.4</span>
+                    <span class="moneyBox__right__item__money">{{btcData.open}}</span>
                 </view>
             </view>
         </view>
@@ -60,7 +60,7 @@
         </uni-transition>
         <uni-transition ref="ani" custom-class="transition" :mode-class="['fade']" :show="show_content=='2'">
             <view class="content">
-                <Depth />
+                <!-- <Depth /> -->
             </view>
         </uni-transition>
         <uni-transition ref="ani" custom-class="transition" :mode-class="['fade']" :show="show_content=='3'">
@@ -89,6 +89,9 @@ import Trades from './components/Trades'
 import Depth from './components/Depth.vue'
 import Funding from './components/Funding'
 import Details from './components/Details'
+
+import { mapState, mapActions } from "vuex"
+
 export default{
     name: 'Price',
     components: { NavEthBtc, KLine, Book, Trades, Depth, Funding, Details },
@@ -98,6 +101,14 @@ export default{
         }
     },
     methods:{
+        ChangeSymbol(symbol){
+            this.$refs.kline.ChangeSymbol(symbol)
+        }
+    },
+    mounted(){
+    },
+    computed: {
+        ...mapState('priceStore',['btcData'])
     }
 }
 </script>
@@ -149,7 +160,8 @@ export default{
     white-space: nowrap;
     display: flex;
     position: sticky;
-    top: 88rpx;
+    // top: 88rpx;
+    top: 158rpx;
     left: 0;
     z-index: 998;
     &__item{
