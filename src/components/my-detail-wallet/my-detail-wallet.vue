@@ -31,9 +31,9 @@
     deepcClone,
     isEmpty
   } from '../../utils/index.js'
-  import {
-    getWeb3
-  } from '../../utils/getWeb3.js'
+  // import {
+  //   getWeb3
+  // } from '../../utils/connectWallet.js'
   export default {
     data() {
       return {

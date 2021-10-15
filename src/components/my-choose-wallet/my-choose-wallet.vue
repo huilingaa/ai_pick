@@ -21,6 +21,7 @@
 </template>
 
 <script>
+  import {connect} from '../../utils/connectWallet.js'
   import {
     mapState,
     mapActions,
@@ -30,9 +31,17 @@
     deepcClone,
     isEmpty
   } from '../../utils/index.js'
-  import {
-    getWeb3
-  } from '../../utils/getWeb3.js'
+  // import {
+  //   getWeb3
+  // } from '../../utils/getWeb3.js'
+  // 钱包连接，目前只测试连接mackmask
+  export const useWeb3 = () => {
+    if (window.ethereum) {
+      const web3 = new Web3(window.ethereum);
+      return web3
+    }
+  }
+  const Web3 = require('web3');
   export default {
     data() {
       return {
@@ -65,19 +74,24 @@
         this.$refs.cmpwalletpopup.open()
       },
 
-      // 连接钱包
-      handleConnectWallet(name) {
-        uni.showToast({
-          icon: 'none',
-          title: '连接成功',
-          duration: 2000,
-          success: () => {
-            this.$store
-              .dispatch('walletStore/connectWallet', name)
-            this.$refs.cmpwalletpopup.close();
-          }
 
-        })
+      // 连接钱包,有插件和无插件的
+     async handleConnectWallet(name) {
+        if (window.ethereum) {
+          var web3 = useWeb3();
+          // 连接
+          await window.ethereum.enable();
+          // 账户
+          web3.eth.getAccounts((err, accs) => {
+            var address =accs[0]
+            this.$store
+              .dispatch('walletStore/connectWallet', {address,name})
+             return
+          });
+        }else{
+            connect(name);
+        }
+
       }
     },
   }
