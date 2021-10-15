@@ -5,7 +5,7 @@
       <v-tabs class="space" :fixed="true" paddingItem="0 30rpx" activeColor='#4DA2FA' fontSize='36rpx'
         v-model="activeTab" :scroll="true" :tabs="['Portfolio', 'Price', 'Trade']" @change="changeTab">
       </v-tabs>
-      <component :is="['Portfolio','Price','Trade'][activeTab]"></component>
+      <keep-alive><component :is="['Portfolio','Price','Trade'][activeTab]"></component></keep-alive>
     </view>
     <my-choose-wallet v-if="!connectAddressId" ref="assetWalletPopup" />
   </view>

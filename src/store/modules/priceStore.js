@@ -26,24 +26,24 @@ export default () => {
   const mutations = {
       setBtcData(state, obj){
           state.btcData = {
-            high: `$${obj.high}`,
-            low: `$${obj.low}`,
-            open: `$${obj.open}`,
-            close: `$${obj.close}`,
+            high: `$${obj.high.replace(/(?=\B(?:\d{3})+\b)(\d{3}(?:\.\d+$)?)/g,',$1')}`,
+            low: `$${obj.low.replace(/(?=\B(?:\d{3})+\b)(\d{3}(?:\.\d+$)?)/g,',$1')}`,
+            open: `$${obj.open.replace(/(?=\B(?:\d{3})+\b)(\d{3}(?:\.\d+$)?)/g,',$1')}`,
+            close: `$${obj.close.replace(/(?=\B(?:\d{3})+\b)(\d{3}(?:\.\d+$)?)/g,',$1')}`,
             chg: `${obj.chg}%`,
-            chgPrice: `$${obj.chgPrice}`,
-            price: `$${obj.price}`
+            chgPrice: `$${obj.chgPrice.replace(/(?=\B(?:\d{3})+\b)(\d{3}(?:\.\d+$)?)/g,',$1')}`,
+            price: `$${obj.price.replace(/(?=\B(?:\d{3})+\b)(\d{3}(?:\.\d+$)?)/g,',$1')}`
           }
       },
       setEthData(state, obj){
           state.ethData = {
-            high: `$${obj.high}`,
-            low: `$${obj.low}`,
-            open: `$${obj.open}`,
-            close: `$${obj.close}`,
+            high: `$${obj.high.replace(/(?=\B(?:\d{3})+\b)(\d{3}(?:\.\d+$)?)/g,',$1')}`,
+            low: `$${obj.low.replace(/(?=\B(?:\d{3})+\b)(\d{3}(?:\.\d+$)?)/g,',$1')}`,
+            open: `$${obj.open.replace(/(?=\B(?:\d{3})+\b)(\d{3}(?:\.\d+$)?)/g,',$1')}`,
+            close: `$${obj.close.replace(/(?=\B(?:\d{3})+\b)(\d{3}(?:\.\d+$)?)/g,',$1')}`,
             chg: `${obj.chg}%`,
-            chgPrice: `$${obj.chgPrice}`,
-            price: `$${obj.price}`
+            chgPrice: `$${obj.chgPrice.replace(/(?=\B(?:\d{3})+\b)(\d{3}(?:\.\d+$)?)/g,',$1')}`,
+            price: `$${obj.price.replace(/(?=\B(?:\d{3})+\b)(\d{3}(?:\.\d+$)?)/g,',$1')}`
           }
       },
       setSocketGlobal(state, val){
