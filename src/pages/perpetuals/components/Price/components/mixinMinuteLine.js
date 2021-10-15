@@ -13,7 +13,7 @@ DefaultDataM.GetMinuteOption=function()
 
         Windows: //窗口指标
         [
-            {Index:"MACD"},
+            // {Index:"MACD"},
         ], 
         
         IsAutoUpdate:false,             //是自动更新数据
@@ -28,10 +28,10 @@ DefaultDataM.GetMinuteOption=function()
     
         Border: //边框
         {
-            Left:80,    //左边间距
-            Right:80,     //右边间距
-            Top:30,
-            Bottom:50
+            Left:1,    //左边间距
+            Right:1,     //右边间距
+            Top:25,
+            Bottom:25
         },
                 
         Frame:  //子框架设置
@@ -106,7 +106,7 @@ export const mixinMinuteLine = {
 
         ChangeSymbolM(symbol)   //切换股票
         {
-            if (this.OriginalSymbolM==symbol) return;
+            // if (this.OriginalSymbolM==symbol) return;
 
             this.OriginalSymbolM=symbol;
             this.SymbolM=symbol+'.BIT';
@@ -175,8 +175,17 @@ export const mixinMinuteLine = {
             if (this.ChartM) return;
             
             //黑色风格
-            //var blackStyle=HQChart.Chart.HQChartStyle.GetStyleConfig(HQChart.Chart.STYLE_TYPE_ID.BLACK_ID);
-            //HQChart.Chart.JSChart.SetStyle(blackStyle);
+            var blackStyle=HQChart.HQChartStyle.GetStyleConfig(HQChart.STYLE_TYPE_ID.BLACK_ID);
+			blackStyle.FrameTitleBGColor = 'rgb(24,28,31)'
+			blackStyle.TitleFont = '20px 微软雅黑'
+
+			//K线颜色
+    		blackStyle.UpBarColor='rgb(37,175,142)';   			//K线上涨柱子颜色
+    		blackStyle.UpTextColor= blackStyle.UpBarColor;		//上涨价格颜色
+    		blackStyle.DownBarColor='rgb(210,73,99)';			//K线下跌柱子颜色
+    		blackStyle.DownTextColor=blackStyle.DownBarColor;	//下跌价格颜色
+
+			HQChart.JSChart.SetStyle(blackStyle);
 
             //局部修改颜色
             //var resource=HQChart.JSChart.GetResource(); //获取全局资源

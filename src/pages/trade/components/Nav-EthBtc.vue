@@ -12,7 +12,7 @@
         </view>
         <view class="bz" :class="{'bz--show':show_ethOrBtc}" @click="show_ethOrBtc=false">
             <view class="bz__wrap" :class="{'bz__wrap--show':show_ethOrBtc}">
-                <view class="bz__item" @click="ChangeSymbol('ethusdt')">
+                <view class="bz__item" @click="ChangeSymbol('ethusdt')" :class="{'bz__item--red':ethData.chg.indexOf('-')==0}">
                     <image class="bz__item__img" src='../../../static/images/trade/eth.png'/>
                     <view class="bz__item__titleBox">
                         <span class="bz__item__titleBox__title">Ethereum</span>
@@ -21,7 +21,7 @@
                     <span class="bz__item__money">{{ethData.price}}</span>
                     <view class="bz__item__rate">{{ethData.chg}}</view>
                 </view>
-                <view class="bz__item bz__item--btc" @click="ChangeSymbol('btcusdt')">
+                <view class="bz__item" @click="ChangeSymbol('btcusdt')" :class="{'bz__item--red':btcData.chg.indexOf('-')==0}">
                     <image class="bz__item__img" src='../../../static/images/trade/btc.png'/>
                     <view class="bz__item__titleBox">
                         <span class="bz__item__titleBox__title">Bitcoin</span>
@@ -170,7 +170,7 @@ export default{
                 padding: 0 16rpx;
                 background: #13A467;
             }
-            &--btc{
+            &--red{
                 .bz__item__money{
                     color: #CF4D65;
                 }

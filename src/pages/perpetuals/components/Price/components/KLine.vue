@@ -1,17 +1,19 @@
 <template>
 	<div class='divchart' >
 		<view class="menu">
-            <view class="menu__item" @click="show_option='0'">
+            <view class="menu__item" @click.self="show_option='0'">
                 D
                 <image class="menu__item__img" src="../../../../../static/images/trade/ic_label@2x.png" />
+				<view class="menu__item__disable" v-if="nowChart=='m'"></view>
             </view>
-            <view class="menu__item" @click="show_option='1'">
+            <view class="menu__item" @click.self="show_option='1'">
                 K line
                 <image class="menu__item__img" src="../../../../../static/images/trade/ic_label@2x.png" />
             </view>
-            <view class="menu__item" @click="show_option='2'">
+            <view class="menu__item" @click.self="show_option='2'">
                 Indecator
                 <image class="menu__item__img" src="../../../../../static/images/trade/ic_label@2x.png" />
+				<view class="menu__item__disable" v-if="nowChart=='m'"></view>
             </view>
             <view class="menu__item menu__item--flex"></view>
             <view class="menu__item">
@@ -85,13 +87,21 @@
 			<div class="select__center" v-show="show_option=='1'">
 				<div class="row">
 					<div class="select__item">
-						<div class="select__item__menu select__item__menu--active" @click="switchToKLine">Candles</div>
+						<div class="select__item__menu"
+						    :class='{"select__item__menu--active":nowChart=="k"}'
+						    @click="switchToKLine">
+							Candles
+						</div>
 					</div>
 					<!-- <div class="select__item">
 						<div class="select__item__menu">Bars</div>
 					</div> -->
 					<div class="select__item">
-						<div class="select__item__menu" @click="createMinuteLine">Line</div>
+						<div class="select__item__menu"
+						    :class='{"select__item__menu--active":nowChart=="m"}'
+						    @click="createMinuteLine">
+							Line
+						</div>
 					</div>
 					<!-- <div class="select__item">
 						<div class="select__item__menu">Area</div>
@@ -168,7 +178,7 @@
 		
 		<!--  #ifdef  H5 -->
 		<div>
-			<div class='kline' id="kline" ref='kline' v-if="show_chart"></div>
+			<div class='kline' id="kline" ref='kline'></div>
 		</div>
 		<!--  #endif -->
 		
@@ -309,7 +319,8 @@ export default
 			LastSubString:null,     //最后一个订阅的数据
 
 			show_option: false,
-			show_chart: true
+
+			nowChart: 'k' //'k'k线图，'m'分时图
 		};
 		
 		return data;
@@ -329,7 +340,7 @@ export default
 				  var width=res.windowWidth;
 				  var height=res.windowHeight;
 				  this.ChartWidth=width - 30;
-				  // this.ChartHeight=height+500;
+				//   this.ChartHeight=height;
 				  this.$nextTick(()=>
 				  {
 					  // #ifdef H5
@@ -406,9 +417,19 @@ export default
 		{
 			if (this.OriginalSymbol==symbol) return;
 
-			this.OriginalSymbol=symbol;
-			this.Symbol=symbol+'.BIT';
-			g_KLine.JSChart.ChangeSymbol(this.Symbol);
+			this.OriginalSymbol=symbol
+			this.Symbol=symbol+'.BIT'
+
+			this.SymbolM = symbol+'.BIT'
+            this.OriginalSymbolM = symbol
+
+			if(this.nowChart=='k'){
+				g_KLine.JSChart.ChangeSymbol(this.Symbol)
+			}else{
+				//分时图切换股票
+				console.log
+				this.ChangeSymbolM(symbol)
+			}
 		},
 
 		ChangeIndecator(name)  //切换指标
@@ -443,7 +464,14 @@ export default
 			
 			var blackStyle=HQChart.HQChartStyle.GetStyleConfig(HQChart.STYLE_TYPE_ID.BLACK_ID);
 			blackStyle.FrameTitleBGColor = 'rgb(24,28,31)'
-			blackStyle.TitleFont = '12px 微软雅黑'
+			blackStyle.TitleFont = '20px 微软雅黑'
+
+			//K线颜色
+    		blackStyle.UpBarColor='rgb(37,175,142)';   			//K线上涨柱子颜色
+    		blackStyle.UpTextColor= blackStyle.UpBarColor;		//上涨价格颜色
+    		blackStyle.DownBarColor='rgb(210,73,99)';			//K线下跌柱子颜色
+    		blackStyle.DownTextColor=blackStyle.DownBarColor;	//下跌价格颜色
+
 			HQChart.JSChart.SetStyle(blackStyle);
 			//this.$refs.kline.style.backgroundColor=blackStyle.BGColor;	//div背景色设置黑色
 
@@ -490,7 +518,6 @@ export default
 		
 		NetworkFilter(data, callback)
 		{
-			if(!this.show_chart){return}
 			console.log('[KLineChart::NetworkFilter] data', data);
 			switch(data.Name)
 			{
@@ -858,6 +885,8 @@ export default
 
 		createMinuteLine(){
 			console.log('createMinuteLine')
+			this.nowChart = 'm'
+
 			this.ClearChart()
 			uni.closeSocket()
 			this.SocketOpen = null
@@ -867,6 +896,8 @@ export default
 		// 从分时图切换至K线图
 		switchToKLine(){
 			console.log('switchToKLine')
+			this.nowChart = 'k'
+
 			this.ClearChartM()
 			this.CreateKLineChart()
 		}
@@ -893,6 +924,7 @@ export default
         display: flex;
         justify-content: center;
         align-items: center;
+		position: relative;
         &--flex{
             flex: 1;
         }
@@ -907,6 +939,14 @@ export default
             width: 40rpx;
             height: 40rpx;
         }
+		&__disable{
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background: rgba(255,255,255,0.1);
+		}
     }
 }
 .select{

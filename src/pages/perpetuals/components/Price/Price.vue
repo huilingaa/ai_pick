@@ -2,25 +2,25 @@
     <view class="price">
         <NavEthBtc @ChangeSymbol='ChangeSymbol' />
         <view class="moneyBox">
-            <view class="moneyBox__left">
-                <h1 class="bigMoney">{{btcData.price}}</h1>
+            <view class="moneyBox__left" :class="{'moneyBox__left--red':priceData.chg.indexOf('-')==0}">
+                <h1 class="bigMoney">{{priceData.price}}</h1>
                 <view class="rateMoney">
-                    <span class="rateMoney__item">{{btcData.chg}}</span>
-                    <span class="rateMoney__item">{{btcData.chgPrice}}</span>
+                    <span class="rateMoney__item">{{priceData.chg}}</span>
+                    <span class="rateMoney__item">{{priceData.chgPrice}}</span>
                 </view>
             </view>
             <view class="moneyBox__right">
                 <view class="moneyBox__right__item">
                     <span>高</span>
-                    <span class="moneyBox__right__item__money">{{btcData.high}}</span>
+                    <span class="moneyBox__right__item__money">{{priceData.high}}</span>
                 </view>
                 <view class="moneyBox__right__item">
                     <span>低</span>
-                    <span class="moneyBox__right__item__money">{{btcData.low}}</span>
+                    <span class="moneyBox__right__item__money">{{priceData.low}}</span>
                 </view>
                 <view class="moneyBox__right__item">
                     <span>开</span>
-                    <span class="moneyBox__right__item__money">{{btcData.open}}</span>
+                    <span class="moneyBox__right__item__money">{{priceData.open}}</span>
                 </view>
             </view>
         </view>
@@ -97,15 +97,31 @@ export default{
     components: { NavEthBtc, KLine, Book, Trades, Depth, Funding, Details },
     data(){
         return {
-            show_content: '0'
+            show_content: '0',
+
+            priceData: {
+                high: '$0',
+                low: '$0',
+                open: '$0',
+                close: '$0',
+                chg: '0%',
+                chgPrice: '$0',
+                price: '$0'
+            }
         }
     },
     methods:{
         ChangeSymbol(symbol){
+            if(symbol.indexOf('btcusdt')!=-1){
+                this.priceData = this.btcData
+            }else{
+                this.priceData = this.ethData
+            }
             this.$refs.kline.ChangeSymbol(symbol)
         }
     },
     mounted(){
+        this.priceData = this.btcData
     },
     computed: {
         ...mapState('priceStore',['btcData'])
@@ -140,6 +156,14 @@ export default{
             &__item{
                 margin-right: 20rpx;
             }
+        }
+    }
+    &__left--red{
+        .bigMoney{
+            color: #CF4D65;
+        }
+        .rateMoney{
+            color: #CF4D65;
         }
     }
     &__right{
