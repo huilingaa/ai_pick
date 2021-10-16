@@ -43,7 +43,9 @@ DefaultDataM.GetMinuteOption=function()
         ExtendChart:    //扩展图形
         [
             {Name:'MinuteTooltip' }  //手机端tooltip
-        ]
+        ],
+
+        EnableScrollUpDown: true
         
     }
 
@@ -157,7 +159,7 @@ export const mixinMinuteLine = {
                       //获取屏幕大小 动态设置K线的div大小
                       var kline=this.$refs.kline;
                       kline.style.width=width+'px';
-                      kline.style.height=(height-90)+'px';
+                      kline.style.height=(width+20)+'px';
 
                      if (this.ChartM) this.ChartM.OnSize();
                   }
@@ -174,6 +176,7 @@ export const mixinMinuteLine = {
 
             if (this.ChartM) return;
             
+            // /*
             //黑色风格
             var blackStyle=HQChart.HQChartStyle.GetStyleConfig(HQChart.STYLE_TYPE_ID.BLACK_ID);
 			blackStyle.FrameTitleBGColor = 'rgb(24,28,31)'
@@ -186,6 +189,7 @@ export const mixinMinuteLine = {
     		blackStyle.DownTextColor=blackStyle.DownBarColor;	//下跌价格颜色
 
 			HQChart.JSChart.SetStyle(blackStyle);
+            // */
 
             //局部修改颜色
             //var resource=HQChart.JSChart.GetResource(); //获取全局资源

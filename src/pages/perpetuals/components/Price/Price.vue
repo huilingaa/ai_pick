@@ -75,8 +75,8 @@
         </uni-transition>
 
         <view class="btBtn">
-            <view class="btBtn__item btBtn__item__left">Buy</view>
-            <view class="btBtn__item btBtn__item__right">Sell</view>
+            <view class="btBtn__item btBtn__item__left" @click="toTrade('')">Buy</view>
+            <view class="btBtn__item btBtn__item__right" @click="toTrade('sell')">Sell</view>
         </view>
     </view>
 </template>
@@ -112,19 +112,22 @@ export default{
     },
     methods:{
         ChangeSymbol(symbol){
-            if(symbol.indexOf('btcusdt')!=-1){
+            if(symbol=='btcusdt'){
                 this.priceData = this.btcData
             }else{
                 this.priceData = this.ethData
             }
             this.$refs.kline.ChangeSymbol(symbol)
+        },
+        toTrade(param){
+            this.$emit('toTrade',param)
         }
     },
     mounted(){
         this.priceData = this.btcData
     },
     computed: {
-        ...mapState('priceStore',['btcData'])
+        ...mapState('priceStore',['btcData','ethData'])
     }
 }
 </script>

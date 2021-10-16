@@ -5,7 +5,12 @@
       <v-tabs class="space" :fixed="true" paddingItem="0 30rpx" activeColor='#4DA2FA' fontSize='36rpx'
         v-model="activeTab" :scroll="true" :tabs="['Portfolio', 'Price', 'Trade']" @change="changeTab">
       </v-tabs>
-      <keep-alive><component :is="['Portfolio','Price','Trade'][activeTab]"></component></keep-alive>
+      <keep-alive>
+        <component :is="['Portfolio','Price','Trade'][activeTab]"
+          :ref="['Portfolio','Price','Trade'][activeTab]"
+          @toTrade='toTrade'>
+        </component>
+      </keep-alive>
     </view>
     <my-choose-wallet v-if="!connectAddressId" ref="assetWalletPopup" />
   </view>
@@ -44,6 +49,12 @@
     methods: {
       changeTab(index) {
         console.log('当前选中的项：' + index)
+      },
+      toTrade(param){
+        this.activeTab = 2
+        setTimeout(()=>{
+          this.$refs.Trade.switchBuyOrSell(param)
+        },300)
       }
     }
   }

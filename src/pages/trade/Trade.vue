@@ -236,6 +236,7 @@
   import Fills from './components/Fills.vue'
   import Payments from './components/Payments'
   import NavEthBtc from './components/Nav-EthBtc'
+  import request from '../../utils/request.js'
   export default {
     components: { Position, Order, Fills, Payments, NavEthBtc },
     data() {
@@ -257,7 +258,32 @@
         pickerChange(e){
 			// if(e.currentTarget.id=='type')
             this.index_list = e.detail.value
-		}
+		},
+        switchBuyOrSell(param){
+            if(param=='sell'){
+                this.buyOrSell = 'sell'
+            }else{
+                this.buyOrSell = 'buy'
+            }
+        },
+        //获取数字货币深度数据
+        getDepthData2(){
+            request.get('http://m.bluechip.network/api/')
+              .then(()=>{
+                  console.log('eee')
+              })
+        },
+        getDepthData(){
+            uni.request({
+                url: 'http://m.bluechip.network/',
+                data: {},
+                success: (res)=>{},
+                fail: (err)=>{}
+            })
+        }
+    },
+    mounted(){
+        this.getDepthData()
     },
     computed: {
         limitOrMarket(){

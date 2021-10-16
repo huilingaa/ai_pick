@@ -270,6 +270,8 @@ DefaultData.GetKLineOption = function ()
 		[
 			{Name:'KLineTooltip' },	//开启手机端tooltip
 		],
+
+		EnableScrollUpDown: true
         
     };
  
@@ -339,7 +341,7 @@ export default
 			  {
 				  var width=res.windowWidth;
 				  var height=res.windowHeight;
-				  this.ChartWidth=width - 30;
+				  this.ChartWidth=width;
 				//   this.ChartHeight=height;
 				  this.$nextTick(()=>
 				  {
