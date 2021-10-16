@@ -36,8 +36,12 @@
       position: relative;
 
       image {
-        width: 750rpx;
-        height: 7920rpx;
+
+
+        width: 100%;
+        height: 8240rpx;
+        background: #FFFFFF;
+        opacity: 1;
       }
 
       padding-bottom: var(--window-bottom);

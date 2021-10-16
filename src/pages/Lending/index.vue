@@ -2,7 +2,10 @@
   <view class="Lending">
     <my-header />
     <view class="wrap">
-      <image :src="require(`../../static/images/bg_lending.png`)"></image>
+      <image class="img1" :src="require(`../../static/images/bg_lending@2x.png`)"></image>
+      <scroll-view class="scroll-view_H" scroll-x="true" @scroll="scroll" scroll-left="0">
+        <image class="img2" :src="require(`../../static/images/markets@2x (4).png`)"></image>
+      </scroll-view>
     </view>
   </view>
 </template>
@@ -25,9 +28,16 @@
       width: 100%;
       height: 100%;
 
-      image {
-        width: 750rpx;
-        height: 3380rpx;
+      .img1 {
+        width: 100%;
+        height: 1486rpx;
+      }
+
+      .img2 {
+        overflow-x: scroll;
+        width:2400rpx;
+        height: 1690rpx;
+
       }
 
       padding-bottom: var(--window-bottom);

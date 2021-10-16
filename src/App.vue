@@ -14,27 +14,7 @@
       });
 
 
-      // commit('SET_CUURRENTTOWER_ID', '')
-      // this.$store.commit('indexStore/SET_CUURRENTTOWER_ID')
-
-      // console.log('App onLaunch')
-      // 如果没有当前激活节点和节点列表时， 直接进入节点首页。 关闭所有其他
-      // #ifdef APP-PLUS
-      if (!this.walletList.length) {
-        uni.reLaunch({
-          url: "/pages/wallet/index",
-          success: ()=>{
-            this.$store.dispatch('getHotUpload')
-          }
-        })
-      } else {
-        uni.reLaunch({
-          url: "/pages/index/index",
-          success: ()=>{
-            this.$store.dispatch('getHotUpload')
-          }
-        })
-      }
+  
       //app关闭默认的启动 方法关闭启动图。但是这个时间不能太晚，6s 超时后依旧会主动关闭。
       setTimeout(() => {
         plus.navigator.closeSplashscreen()
